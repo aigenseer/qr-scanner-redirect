@@ -1,0 +1,22 @@
+.dialog-actions{
+  min-height: 64px;
+  z-index: 1;
+  background: rgba(0, 0, 0, 1);
+  justify-content: center !important;
+}
+
+.dialogbar.dialog-title{
+  z-index: 1;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 0, 1);
+}
+
+.dialog-title *{
+  color: inherit !important;
+}
+
+.dialog-actions svg,
+.dialog-title svg{
+  color: white;
+}

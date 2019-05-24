@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "paths": { "*": ["types/*"] },
+      "baseUrl": ".",
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "noImplicitAny": true,
+      "module": "commonjs",
+      "target": "ES2015",
+      "esModuleInterop": true,
+      "jsx": "react"
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}

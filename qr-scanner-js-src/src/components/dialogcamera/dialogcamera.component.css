@@ -1,0 +1,18 @@
+.dialogcamera .camera-button{
+  color: red;
+}
+
+.dialogcamera .content{
+  position: relative;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.dialogcamera .change-camera{
+  position: absolute;
+  left: 0;
+  margin-left: 10px;
+}

@@ -1,0 +1,96 @@
+.qrscanner video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+
+:root {
+  --main-qrcode-border: 3px;
+  --main-qrcode-scanner-width: 25vh;
+  --main-qrcode-scanner-height-move: 23.5vh;
+}
+
+.ocrloader {
+  width: var(--main-qrcode-scanner-width);
+  height: var(--main-qrcode-scanner-width);
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  backface-visibility: hidden;
+}
+.ocrloader span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1.5vh;
+  background-color: rgba(45, 183, 183, 0.54);
+  z-index: 2;
+  -webkit-animation: action 1s infinite  alternate;
+  animation: action 1s infinite  alternate;
+}
+
+
+
+.ocrloader:before,  .ocrloader:after,
+em:after, em:before {
+    z-index: 3;
+    border-color: #000;
+    content: "";
+    position: absolute;
+    width: 19px;
+    height: 16px;
+    border-style: solid;
+    border-width: 0px;
+  }
+.ocrloader:before {
+    left: 0;
+    top: 0;
+    border-left-width: var(--main-qrcode-border);
+    border-top-width: var(--main-qrcode-border);
+  }
+.ocrloader:after {
+    right: 0;
+    top: 0;
+    border-right-width: var(--main-qrcode-border);
+    border-top-width: var(--main-qrcode-border);
+  }
+em:before {
+  left: 0;
+  bottom: 0;
+  border-left-width: var(--main-qrcode-border);
+  border-bottom-width: var(--main-qrcode-border);
+}
+em:after {
+  right: 0;
+  bottom: 0;
+  border-right-width: var(--main-qrcode-border);
+  border-bottom-width: var(--main-qrcode-border);
+}
+
+
+@keyframes move {
+  /* 0%, 100% { transform: translateY(300%); }
+  50% { transform: translateY(0%); }
+  75% { transform: translateY(800%); } */
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 100px;
+  }
+}
+
+@-webkit-keyframes action {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(var(--main-qrcode-scanner-height-move)); }
+}
+@keyframes action {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(var(--main-qrcode-scanner-height-move)); }
+}

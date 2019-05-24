@@ -1,0 +1,13 @@
+.dialogmsg h1:not(.site-title):before,
+.dialogmsg h2:before {
+  display: none;
+}
+
+.dialogmsg .MuiGrid-container-120 .MuiGrid-item-121{
+  display: flex;
+  justify-content: center;
+}
+
+.dialogmsg .MuiGrid-container-120 .MuiGrid-item-121 button{
+
+}
