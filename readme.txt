@@ -1,4 +1,4 @@
-=== Qr Scanner Redirect ===
+=== QR Scanner Redirect ===
 Contributors: aigenseer
 Tags: camera, qr, scanner, redirect, browser
 Requires at least: 3.0.1
