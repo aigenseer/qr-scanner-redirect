@@ -1,12 +1,12 @@
 <?php
- /*
-   Plugin Name: QR Scanner Redirect
-   Plugin URI: https://github.com/aigenseer
-   description: web qr-scanner with redirect function
-   Version: 1.0.0
-   Author: Viktor Aigenseer
-   Author URI: https://github.com/aigenseer
- */
+/*
+  Plugin Name: QR Scanner Redirect
+  Plugin URI: https://github.com/aigenseer/qr-scanner-redirect
+  description: Wordpress web qr-scanner with redirect function
+  Version: 1.0.0
+  Author: Viktor Aigenseer
+  Author URI: https://github.com/aigenseer/
+*/
 define('QSR_PLUGIN_FILE_URL', dirname( __FILE__ , 1 ));
 define('QSR_PLUGIN_URL', plugins_url('/qr-scanner-redirect/plugin'));
 define('QSR_NAME', 'QR-Scanner-Redirect');
