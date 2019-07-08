@@ -13,6 +13,7 @@ define('QSR_NAME', 'QR-Scanner-Redirect');
 define('QSR_PREFIX', 'qrscannerredirect');
 define('QSR_SHORTCODE_NAME', 'qr-scanner-redirect');
 define('QSR_WIDGET_DESCRIPTION', 'Qr-scanner with redirect funktion');
+define('UPLOAD_IMAGE_PREFIX', 'QR-code-image-prefix');
 
 include "class/tabs.class.php";
 
