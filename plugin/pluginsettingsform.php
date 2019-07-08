@@ -10,7 +10,7 @@
  */
 function qsr_printDescription($entry)
 {
-  $description = esc_html($entry->description);
+  $description = isset($entry->description) ? esc_html($entry->description) : '';
   if(property_exists($entry, 'description')){
     return <<<HTML
     <p class="description">$description</p>
@@ -27,7 +27,7 @@ foreach ($formvalues as $name => $entry){
 HTML;
   $name = esc_html($name);
   $value = esc_html($entry->value);
-  $placeholder = esc_html($entry->placeholder);
+  $placeholder = isset($entry->placeholder) ? esc_html($entry->placeholder) : '';
   switch ($entry->type) {
     case 'string':
       print <<<HTML
