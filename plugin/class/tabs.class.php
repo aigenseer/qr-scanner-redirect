@@ -29,7 +29,7 @@ class QSR_Tabs
    */
   private function getActiveTab()
   {
-    $active_tab = $_GET[ 'tab' ];
+    $active_tab = isset($_GET['id'])? $_GET[ 'tab' ]: "";
     $found = '';
     foreach ($this->tabs as $id => $tab) {
       if($active_tab == $id){

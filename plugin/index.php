@@ -16,7 +16,7 @@ define('QSR_WIDGET_DESCRIPTION', 'Qr-scanner with redirect funktion');
 
 include "class/tabs.class.php";
 
-$qsr_tabs = new QSR_Tabs(UPLOAD_IMAGE_PREFIX, QSR_NAME, [
+$qsr_tabs = new QSR_Tabs(QSR_PREFIX, QSR_NAME, [
   'settings' => (object)[
     'title' => 'Settings',
     'include' => QSR_PLUGIN_FILE_URL.'/settings.php'

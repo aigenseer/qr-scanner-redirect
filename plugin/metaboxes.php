@@ -31,6 +31,12 @@ function qsr_add_meta_boxes()
         );
     }
 }
-wp_enqueue_script('qr-generator-script',  plugins_url( '/assets/qr-generator.js', __FILE__ ));
+
+add_action( 'admin_enqueue_scripts', function()
+{
+    wp_enqueue_script('qr-generator-script',  plugins_url( '/assets/qr-generator.js', __FILE__ ));
+});
+
+
 add_action('add_meta_boxes', 'qsr_add_meta_boxes');
 ?>
