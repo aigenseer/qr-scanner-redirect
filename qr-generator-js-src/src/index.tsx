@@ -3,19 +3,19 @@
  * Copyright 2019, https://github.com/aigenseer
  */
 /// <reference path='../custom.d.ts'/>
-import * as React from "react";
+import * as React    from "react";
 import * as ReactDOM from "react-dom";
-import App from './components/app/app.component';
+import App           from './components/App';
 
 
 setTimeout(()=>{
-  const APP_NAME = 'qrgenerator';
+  const APP_NAME    = 'qrgenerator';
   const rootElement = document.getElementById(APP_NAME)
+  
   // create only the component if the element was found in the document
-  if(rootElement!=null){
-    let url = rootElement.getAttribute('data-url');
+  if(rootElement!=null){    
     ReactDOM.render(
-        <App compiler="TypeScript" framework="React" url={url} />, rootElement
+        <App url={rootElement.getAttribute('data-url')} />, rootElement
     );
   }
 
