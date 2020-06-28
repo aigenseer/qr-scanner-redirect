@@ -26,6 +26,9 @@ const useStyles = makeStyles({
     justifyContent: "center",
    
   },
+  dialogColor: {
+    color: "white !important"
+  },
   dialogActions: {
     minHeight: "64px",
     zIndex: 1,
@@ -87,7 +90,7 @@ export default function DialogScanner(props: IDialogcameraProps) {
   if(SHOWDIALOGACTIONS){
     actionFooter = (<DialogActions className={classes.dialogActions} >
                       <Button onClick={handleChangeSelect} color="primary">
-                        <CameraFront fontSize="large" />
+                        <CameraFront fontSize="large" className={classes.dialogColor} />
                       </Button>
                     </DialogActions>)
   }
@@ -105,7 +108,7 @@ export default function DialogScanner(props: IDialogcameraProps) {
           open={true}
           onClose={() => handleClose()}
         >
-            <DialogTitle onClose={() => handleClose()} >{Properties.getTitleScanQRCode()}</DialogTitle>
+            <DialogTitle className={classes.dialogColor} onClose={() => handleClose()} >{Properties.getTitleScanQRCode()}</DialogTitle>
             <div className={classes.content} >
               <QRScanner mediaStream={mediaStream} onFetchCode={handleClose} />
             </div>

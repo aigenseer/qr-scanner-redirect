@@ -44,6 +44,8 @@ export default function App() {
     visibleButton = (<Button onClick={() => openDialogcamera()}><img src={logo} className={classes.img} alt="qrcode" /></Button>);
   }
 
+  window.qrscannerredirect.open = () => openDialogcamera();
+
   // setTimeout(() => {
   //   openDialogcamera()
   // }, 1000);
