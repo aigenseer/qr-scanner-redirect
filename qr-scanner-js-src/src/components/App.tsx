@@ -68,6 +68,7 @@ export default function App() {
   }
 
   function closeDialogcamera() {
+    VideoStream.destory();
     setContent(null);
   }
 
