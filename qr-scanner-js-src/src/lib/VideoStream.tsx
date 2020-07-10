@@ -113,7 +113,7 @@ export default class VideoStream {
             this.close();
           }
           this.stream                       = await navigator.mediaDevices.getUserMedia({video: mediaTrackConstraints});
-          this.currentMediaTrackConstraints = mediaTrackConstraints
+          this.currentMediaTrackConstraints = mediaTrackConstraints          
           resolve(this.stream);
         } catch (err) {
           reject(err);
@@ -124,7 +124,7 @@ export default class VideoStream {
 
   public getDevices(filterIDs: String[] = []): IVideoStreamSimpleDevice[]
   {
-    return this.devices.filter(device => !filterIDs.indexOf(device.id));
+    return this.devices.filter(device => !filterIDs.includes(device.id));
   } 
 
   public getCurrentStream(): MediaStream

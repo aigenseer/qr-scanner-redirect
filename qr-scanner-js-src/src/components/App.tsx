@@ -87,31 +87,39 @@ export default function App() {
      */
     async function onCloseDialogConfirm(answer: boolean, url: string)
     {
-        if(answer || Properties.isForce()){
-          window.location.href = url;
+        if(answer){
+            redirectToUrl(url);
         }else{
             setMsg(null);
+            // setContent(null);
+            // VideoStream.destory();
         }
-        setContent(null);
-        VideoStream.destory();
+    }
+
+    function redirectToUrl(url: string){
+      window.location.href = url;
     }
   
 
    /**
      * [if the result is a url, then open the Dialogconfirm component]
-     * @type {String|null} result
+     * @type {String|null} url
      */
-    function onCloseDialog(result: string|null = null): void{
-        if(result!=null){
-            if(StringUtils.validURL(result)){
-                const TEXT = Properties.getContentRedirect().replace('%URL', result);
-                setMsg(<Dialogconfirm 
-                  title={Properties.getTitleRedirect()} 
-                  text={TEXT} 
-                  onClose={((answer: boolean) => onCloseDialogConfirm(answer, result))} />)
+    function onCloseDialog(url: string|null = null): void{
+        if(url!=null){
+            if(StringUtils.validURL(url)){
+                if(Properties.isForce()){
+                  redirectToUrl(url);
+                }else{
+                  const TEXT = Properties.getContentRedirect().replace('%URL', url);
+                  setMsg(<Dialogconfirm 
+                    title={Properties.getTitleRedirect()} 
+                    text={TEXT} 
+                    onClose={((answer: boolean) => onCloseDialogConfirm(answer, url))} />)  
+                }                
             }
         }else{
-            closeDialogcamera();
+          closeDialogcamera();
         }
     }
 

@@ -43,15 +43,14 @@ export interface IDialogcameraProps {
     onClose(result: string|null): void;
 }
 
-
+var  selectedDeviceID = "";
 export default function DialogScanner(props: IDialogcameraProps) { 
   const classes                        = useStyles();
   const DEVICE_SIZE                    = props.videoStream.getDevices().length;
   // const SHOWDIALOGACTIONS              = DEVICE_SIZE > 0;
   const SHOWDIALOGACTIONS              = true;
-  let   selectedDeviceID               = "";
   const [mediaStream,  setMediaStream] = useState<MediaStream>(props.videoStream.getCurrentStream());
-  const [showSelectDialog, setShowSelectDialog] = useState<boolean>(false);
+  const [openDialogSelect, setOpenDialogSelect] = useState<boolean>(false);
 
 
   /**
@@ -68,39 +67,48 @@ export default function DialogScanner(props: IDialogcameraProps) {
   function handleChangeSelect(){
     switch(DEVICE_SIZE){
       case 2:
-        onSelectDeviceId(props.videoStream.getDevices([selectedDeviceID])[0].id);
+        changeDeviceByID(props.videoStream.getDevices([selectedDeviceID])[0].id);
       break;
       default:
-        setShowSelectDialog(true);
+        setOpenDialogSelect(true);
       break;
     }
   }
 
-
   /**
    * [handling function on select a stream interface]
-   * @type {string} deviceID
+   * @type {any|null} device
    */
-  function onSelectDeviceId(deviceID: string): void{
+  function onSelectDevice(device: any|null): void
+  {
+    if(device != null){
+      changeDeviceByID(device.id);
+    }
+    setOpenDialogSelect(false);
+  }
+
+  function changeDeviceByID(deviceID: string) {
     selectedDeviceID = deviceID;
     props.videoStream.getStreamByDeviceId(selectedDeviceID).then(mediaStream => setMediaStream(mediaStream));
   }
 
-  let actionFooter = null;
-  if(SHOWDIALOGACTIONS){
-    actionFooter = (<DialogActions className={classes.dialogActions} >
-                      <Button onClick={handleChangeSelect} color="primary">
-                        <CameraFront fontSize="large" className={classes.dialogColor} />
-                      </Button>
-                    </DialogActions>)
+  function getDialogSelectOptions() {
+    return props.videoStream.getDevices().map(e => Object.assign(e, {selected: selectedDeviceID === e.id }));
   }
 
-  let dialogSelectJSX = null;
-  if(showSelectDialog){
-      let options     = props.videoStream.getDevices().map(e => Object.assign(e, {selected: selectedDeviceID === e.id }));
-      dialogSelectJSX = (<DialogSelect open={true} title={Properties.getTitleSelectDevice()} options={options} onSelect={e => onSelectDeviceId(e.id)} />)
+  function getActionFooter() {
+    if(!SHOWDIALOGACTIONS){
+      return null;
+    } 
+
+    return (<DialogActions className={classes.dialogActions} >
+              <Button onClick={handleChangeSelect} color="primary">
+                <CameraFront fontSize="large" className={classes.dialogColor} />
+              </Button>
+            </DialogActions>)
   }
 
+  
 
   return (
     <Dialog
@@ -112,8 +120,8 @@ export default function DialogScanner(props: IDialogcameraProps) {
             <div className={classes.content} >
               <QRScanner mediaStream={mediaStream} onFetchCode={handleClose} />
             </div>
-            {dialogSelectJSX}
-            {actionFooter}
+            <DialogSelect open={openDialogSelect} title={Properties.getTitleSelectDevice()} options={getDialogSelectOptions()} onSelect={e => onSelectDevice(e)} />
+            {getActionFooter()}
         </Dialog>
   );
 }

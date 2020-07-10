@@ -9,7 +9,7 @@ export interface IDialogSelectProps {
     open: boolean
     title: string;
     options: Array<any>;
-    onSelect(option: any): void;
+    onSelect(option: any|null): void;
 }
 
 export default function DialogSelect(props: IDialogSelectProps) {
@@ -24,6 +24,7 @@ export default function DialogSelect(props: IDialogSelectProps) {
      */
     function handleClose(){
         setOpen(false);
+        props.onSelect(null);
     }
 
     /**
@@ -33,8 +34,7 @@ export default function DialogSelect(props: IDialogSelectProps) {
     function handleListItemClick(option: any){
         props.onSelect(option);
         handleClose();
-    }
-
+    }    
 
     return (
         <Dialog
@@ -50,7 +50,7 @@ export default function DialogSelect(props: IDialogSelectProps) {
                     handleListItemClick(option)
                   }
                 }} key={i}>
-                  <ListItemText primary={option.title} />
+                  <ListItemText primary={option.label} />
                 </ListItem>
               ))}
             </List>
