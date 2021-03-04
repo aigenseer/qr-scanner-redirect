@@ -2,7 +2,7 @@
 Contributors: aigenseer
 Tags: camera, qr, scanner, redirect, browser, wordpress, plugin
 Requires at least: 3.0.1
-Tested up to: 5.2.1
+Tested up to: 5.6.2
 Requires PHP: 5.2.4
 Stable tag: 4.3
 License: GPLv3 or later
@@ -14,7 +14,7 @@ Wordpress web qr-scanner with redirect function.
 
 = Write Me =
 
-Has you got a problem or a new wish for idee?
+Do you have a problem or a new wishes?
 Write me on [github](https://github.com/aigenseer/qr-scanner-redirect) or create new topic on wordpress.
 
 == Installation ==
