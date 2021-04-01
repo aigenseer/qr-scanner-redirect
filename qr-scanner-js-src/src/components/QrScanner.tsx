@@ -53,10 +53,11 @@ export default function QrScanner(props:IQrScannerProps) {
    */
   function fetchQrCode(){
     setTimeout(() => {
+      
       if(video != null && context!=null && typeof context.drawImage == 'function') {
         try {
           context.drawImage(video, 0, 0);
-          browserQRCodeReader.decodeFromImage(undefined, canvas.toDataURL("image/png")).then((result: any)=>{          
+          browserQRCodeReader.decodeFromImage(undefined, canvas.toDataURL("image/png")).then((result: any)=>{ 
             props.onFetchCode(result.text);
           }).catch(() => {
                       

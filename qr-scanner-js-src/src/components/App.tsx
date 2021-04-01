@@ -107,7 +107,7 @@ export default function App() {
      */
     function onCloseDialog(url: string|null = null): void{
         if(url!=null){
-            if(StringUtils.validURL(url)){
+            if(StringUtils.validURL(url) || StringUtils.isValidHttpUrl(url)){
                 if(Properties.isForce()){
                   redirectToUrl(url);
                 }else{
