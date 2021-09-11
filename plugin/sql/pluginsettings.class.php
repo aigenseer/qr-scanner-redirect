@@ -120,7 +120,6 @@ class QSR_PluginSettings {
      */
     private function mergWithDefaultValues(array $values, $group=null, $allowUnkown=true)
     {
-      $result = new stdClass();
       $_values = $this->getDefaultData($group);
       foreach (get_object_vars($_values) as $key => $value) {
         $_values->{$key}->value = $_values->{$key}->defaultvalue;
@@ -238,7 +237,9 @@ class QSR_PluginSettings {
               break;
           }//switch
         }
-        $this->set($key, $value->value, $group);
+        if($value->change){
+            $this->set($key, $value->value, $group);
+        }
       }//foreach
 
     }

@@ -57,12 +57,19 @@ HTML;
     break;
     case 'boolean':
       $checked = checked( $entry->value, true, false );
+      $selectedEnabled = "";
+      $selectedDisabled = "";
+      $entry->value? $selectedEnabled = "selected": $selectedDisabled = "selected";
       print <<<HTML
         <td>
-          <input name='$name' type="checkbox" value='1' $checked />
+          <select name='$name' >
+            <option value="1" {$selectedEnabled} >Enabled</option>
+            <option value="0" {$selectedDisabled}>Disabled</option>
+          </select>
           {$qsr_printDescription($entry)}
         </td>
 HTML;
+      //<input name='$name' type="checkbox" value='1' $checked />
 
       break;
     default:
