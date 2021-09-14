@@ -39,6 +39,7 @@ export default function App() {
   const [content, setContent] = useState<null|ReactElement>(null);
   const [msg,     setMsg]     = useState<null|ReactElement>(null);
 
+
   let visibleButton : ReactElement|null = null;
   if(!Properties.isButtonDisabled()){
     visibleButton = (<Button onClick={() => openDialogcamera()}><img src={logo} className={classes.img} alt="qrcode" /></Button>);
@@ -46,9 +47,12 @@ export default function App() {
 
   window.qrscannerredirect.open = () => openDialogcamera();
 
-  // setTimeout(() => {
-  //   openDialogcamera()
-  // }, 1000);
+  /*
+  setTimeout(() => {
+     openDialogcamera()
+  }, 1000);
+
+   */
 
 
   function openDialogcamera() {
@@ -57,7 +61,8 @@ export default function App() {
       VideoStream.getInstance().then(videoStream => {
         setMsg(null);
         setContent(<Dialogcamera videoStream={videoStream} onClose={onCloseDialog} />)
-      }).catch(err => {        
+      }).catch(err => {
+          console.log(err)
         showPermissionMsg()
       });
     }   
