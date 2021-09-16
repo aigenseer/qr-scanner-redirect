@@ -10,13 +10,15 @@ import App           from './components/App';
 
 setTimeout(()=>{
   const APP_NAME    = 'qrgenerator';
-  const rootElement = document.getElementById(APP_NAME)
-  
-  // create only the component if the element was found in the document
-  if(rootElement!=null){    
-    ReactDOM.render(
-        <App url={rootElement.getAttribute('data-url')} />, rootElement
-    );
-  }
+  const rootElements = document.getElementsByClassName(APP_NAME);
+
+  [...rootElements as any].forEach((rootElement: Element) => {
+    if(rootElement!=null){
+      ReactDOM.render(
+          <App url={rootElement.getAttribute('data-url')} size={rootElement.getAttribute('data-size')} />, rootElement
+      );
+    }
+  });
+
 
 }, 1000)

@@ -11,7 +11,7 @@
 function qsr_qr_code_generator($post)
 {
   ?>
-    <div id="qrgenerator" data-url="<?php print get_permalink($post->ID); ?>" />
+    <div class="qrgenerator" data-url="<?php print get_permalink($post->ID); ?>" />
   <?php
 }
 

@@ -17,7 +17,8 @@ define('QSR_PLUGIN_PATH', '/qr-scanner-redirect-dev/');
 define('QSR_PLUGIN_URL', plugins_url(QSR_PLUGIN_PATH));
 define('QSR_NAME', 'QR-Scanner-Redirect');
 define('QSR_PREFIX', 'qrscannerredirect');
-define('QSR_SHORTCODE_NAME', 'qr-scanner-redirect');
+define('QSR_SHORTCODE_NAME_SCANNER', 'qr-scanner-redirect');
+define('QSR_SHORTCODE_NAME_GENERATOR', 'qr-generator');
 define('QSR_WIDGET_DESCRIPTION', 'Qr-scanner with redirect funktion');
 
 include "class/tabs.class.php";
