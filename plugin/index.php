@@ -37,7 +37,7 @@ $qsr_pluginsettings = new QSR_PluginSettings(QSR_PREFIX, (object)[
       'title' => 'Force redirect',
       'type' => 'boolean',
       'defaultvalue' => 0,
-      'description' => 'Force the redirect to the scanned url without confirm'
+      'description' => 'Force the redirect to the scanned url without confirm.'
     ],
     'disableButton' => (object)[
       'title' => 'Diable button',
@@ -45,6 +45,12 @@ $qsr_pluginsettings = new QSR_PluginSettings(QSR_PREFIX, (object)[
       'defaultvalue' => 0,
       'description' => 'if you disable the button, you can open the dialog with the class name "qrscannerredirect-open".'
     ],
+    'openNewTab' => (object)[
+          'title' => 'Open new tab',
+          'type' => 'boolean',
+          'defaultvalue' => 1,
+          'description' => 'Open new tab with the url.'
+     ],
     'titleScanQRCode' => (object)[
       'title' => 'Title for the QR-Code-Scanner',
       'type' => 'string',
@@ -60,7 +66,7 @@ $qsr_pluginsettings = new QSR_PluginSettings(QSR_PREFIX, (object)[
       'type' => 'long-string',
       'defaultvalue' => 'Would you like to redirect to the url "%URL"',
       'placeholder' => 'Would you like to redirect to the url "%URL"',
-      'description' => 'URL path can be set with %URL'
+      'description' => 'URL path can be set with %URL.'
     ],
     'titleSelectDevice' => (object)[
       'title' => 'Title for choose the device camera',

@@ -105,7 +105,12 @@ export default function App() {
     }
 
     function redirectToUrl(url: string){
-      window.location.href = url;
+        if(Properties.isOpenNewTab() && typeof window.open === 'function'){
+            // @ts-ignore
+            window.open(url, '_blank').focus();
+            return
+        }
+        window.location.href = url;
     }
   
 

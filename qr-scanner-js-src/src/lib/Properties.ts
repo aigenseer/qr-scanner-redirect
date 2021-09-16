@@ -12,6 +12,7 @@ export default class Properties {
         return {
             force: false,
             disableButton: false,
+            openNewTab: true,
             titleSelectDevice: 'Select device',
             titlePermissonFailed: 'Permission failed',
             contentPermissonFailed: 'Your browser has no permission for the camera. Please activate the permission.',
@@ -77,6 +78,11 @@ export default class Properties {
     public static isForce(): Boolean
     {
         return window.qrscannerredirect.settings.force;
+    }
+
+    public static isOpenNewTab(): Boolean
+    {
+        return window.qrscannerredirect.settings.openNewTab;
     }
 
 
