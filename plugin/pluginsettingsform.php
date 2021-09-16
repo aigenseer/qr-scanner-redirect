@@ -70,8 +70,15 @@ HTML;
         </td>
 HTML;
       //<input name='$name' type="checkbox" value='1' $checked />
-
-      break;
+    break;
+    case 'color':
+print <<<HTML
+        <td>
+          <input type='color' name='$name' value='$value' />
+          {$qsr_printDescription($entry)}
+        </td>
+HTML;
+    break;
     default:
     print <<<HTML
       <td>

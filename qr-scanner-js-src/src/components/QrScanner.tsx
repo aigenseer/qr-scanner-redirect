@@ -3,7 +3,7 @@
  * Copyright 2019, https://github.com/aigenseer
  */
 import React, { useEffect }    from 'react';
-import { BrowserQRCodeReader } from '@zxing/library';
+import jsQR from "jsqr";
 import './css/qrscanner.css';
 
 interface IQrScannerProps{
@@ -11,8 +11,8 @@ interface IQrScannerProps{
     onFetchCode(code: string): any;
 }
 
-const browserQRCodeReader = new BrowserQRCodeReader();
-const UPDATE_INTERVAL     = 500;
+
+const UPDATE_INTERVAL = 500;
 
 export default function QrScanner(props:IQrScannerProps) {
     let video:           HTMLVideoElement|null = null;
@@ -51,25 +51,24 @@ export default function QrScanner(props:IQrScannerProps) {
      *  on found a qr code then return the result to the parent component ]
      */
     function fetchQrCode(){
-        setTimeout(() => {
+        setTimeout(async () => {
 
             if(video != null && context!=null && typeof context.drawImage == 'function') {
                 try {
                     context.drawImage(video, 0, 0);
-                    browserQRCodeReader.decodeFromImage(undefined, canvas.toDataURL("image/png")).then((result: any)=>{
-                        props.onFetchCode(result.text);
-                    }).catch(() => {
-
-                    })
-                    fetchQrCode();
+                    let imageData = context.getImageData(0,0, context.canvas.width, context.canvas.height).data.buffer;
+                    const code = jsQR(new Uint8ClampedArray(imageData), context.canvas.width, context.canvas.height);
+                    if(code !== null){
+                        props.onFetchCode(code.data);
+                    }else{
+                        fetchQrCode();
+                    }
                 } catch (err) {
                     console.log(err);
                 }
             }
         }, UPDATE_INTERVAL);
     }
-
-
 
     return (<div className="qrscanner">
         <div className="ocrloader">

@@ -1,3 +1,7 @@
+/**
+ * Coded By : aigenseer
+ * Copyright 2020, https://github.com/aigenseer
+ */
 import React , { useState }           from 'react';
 
 import { makeStyles }                 from '@material-ui/core/styles';
@@ -11,11 +15,7 @@ import Properties                     from "../lib/Properties";
 import QRScanner                      from './QrScanner';
 import DialogSelect                   from './DialogSelect';
 
-/**
- * Coded By : aigenseer
- * Copyright 2020, https://github.com/aigenseer
- */
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     width: 500,
   },
@@ -26,19 +26,19 @@ const useStyles = makeStyles({
     alignItems: "center",
     overflow: "hidden",
     justifyContent: "center",
-   
   },
   dialogColor: {
-    color: "white !important"
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText
   },
   dialogActions: {
     minHeight: "64px",
     zIndex: 1,
-    background: "rgba(0, 0, 0, 1)",
+    background: theme.palette.primary.main,
     justifyContent: "center !important",
-    position: "fixed"
+    position: "fixed",
   }
-});
+}));
 
 export interface IDialogcameraProps {
     videoStream: VideoStream
@@ -109,8 +109,6 @@ export default function DialogScanner(props: IDialogcameraProps) {
               </Button>
             </DialogActions>)
   }
-
-  
 
   return (
     <Dialog

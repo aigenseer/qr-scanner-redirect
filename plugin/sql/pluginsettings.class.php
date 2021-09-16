@@ -193,6 +193,7 @@ class QSR_PluginSettings {
           }else{
             switch ($defaultValues->{$key}->type) {
               case 'long-string':
+              case 'color':
               case 'string':
                 $data[$key] = sanitize_text_field($value);
                 break;

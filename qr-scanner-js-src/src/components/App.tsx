@@ -3,10 +3,7 @@
  * Copyright 2020, https://github.com/aigenseer
  */
 import React , { useState, ReactElement }               from 'react';
-import { MuiThemeProvider, makeStyles, createTheme } from '@material-ui/core/styles';
-import blueGrey                                         from '@material-ui/core/colors/blueGrey';
-import lightBlue                                        from '@material-ui/core/colors/lightBlue';
-
+import { MuiThemeProvider, makeStyles, createTheme }    from '@material-ui/core/styles';
 import Properties                                       from "../lib/Properties";
 import StringUtils                                      from "../lib/StringUtils";
 import logo                                             from '../assets/qrcode.svg';
@@ -19,14 +16,6 @@ import Button                                           from '@material-ui/core/
 import VideoStream                                      from '../lib/VideoStream';
 import Dialog                                           from '@material-ui/core/Dialog';
 import MuiDialogTitle                                   from '@material-ui/core/DialogTitle';
-
-
-const theme = createTheme({
-  palette: {
-    primary: blueGrey,
-    secondary: lightBlue
-  },
-});
 
 
 const useStyles = makeStyles({
@@ -44,6 +33,15 @@ export default function App() {
   const [content, setContent] = useState<null|ReactElement>(null);
   const [msg,     setMsg]     = useState<null|ReactElement>(null);
 
+  const theme = createTheme({
+        palette: {
+            primary: {
+                main: Properties.getPrimaryColor(),
+                contrastText: Properties.getPrimaryContrastText(),
+            }
+        },
+  });
+
 
   let visibleButton : ReactElement|null = null;
   if(!Properties.isButtonDisabled()){
@@ -53,9 +51,9 @@ export default function App() {
   window.qrscannerredirect.open = () => openDialogcamera();
 
 
-  setTimeout(() => {
-      //openDialogcamera()
-  }, 1000);
+  // setTimeout(() => {
+  //     openDialogcamera()
+  // }, 1000);
 
 
   function openDialogcamera() {

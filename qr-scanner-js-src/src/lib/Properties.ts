@@ -13,6 +13,8 @@ export default class Properties {
             force: false,
             disableButton: false,
             openNewTab: true,
+            primaryColor: '#000',
+            primaryContrastText: '#fff',
             titleSelectDevice: 'Select device',
             titlePermissonFailed: 'Permission failed',
             contentPermissonFailed: 'Your browser has no permission for the camera. Please activate the permission.',
@@ -73,6 +75,16 @@ export default class Properties {
     public static getTitleSelectDevice(): string
     {
         return window.qrscannerredirect.settings.titleSelectDevice;
+    }
+
+    public static getPrimaryColor(): string
+    {
+        return window.qrscannerredirect.settings.primaryColor;
+    }
+
+    public static getPrimaryContrastText(): string
+    {
+        return window.qrscannerredirect.settings.primaryContrastText;
     }
 
     public static isForce(): Boolean

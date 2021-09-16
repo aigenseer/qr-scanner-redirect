@@ -1,6 +1,6 @@
 {
   "name": "qr-scanner-redirect",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -8,7 +8,7 @@
     "@types/node": "^12.20.25",
     "@types/react": "^16.14.15",
     "@types/react-dom": "^16.9.14",
-    "@zxing/library": "^0.17.0",
+    "jsqr": "^1.4.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "^3.4.1",

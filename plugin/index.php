@@ -32,64 +32,76 @@ $qsr_tabs = new QSR_Tabs(QSR_PREFIX, QSR_NAME, [
 
 include "sql/pluginsettings.class.php";
 $qsr_pluginsettings = new QSR_PluginSettings(QSR_PREFIX, (object)[
-  'settings' => (object)[
-    'force' => (object)[
-      'title' => 'Force redirect',
-      'type' => 'boolean',
-      'defaultvalue' => 0,
-      'description' => 'Force the redirect to the scanned url without confirm.'
-    ],
-    'disableButton' => (object)[
-      'title' => 'Diable button',
-      'type' => 'boolean',
-      'defaultvalue' => 0,
-      'description' => 'if you disable the button, you can open the dialog with the class name "qrscannerredirect-open".'
-    ],
-    'openNewTab' => (object)[
-          'title' => 'Open new tab',
-          'type' => 'boolean',
-          'defaultvalue' => 1,
-          'description' => 'Open new tab with the url.'
-     ],
-    'titleScanQRCode' => (object)[
-      'title' => 'Title for the QR-Code-Scanner',
-      'type' => 'string',
-      'defaultvalue' => 'QR-Code-Scanner'
-    ],
-    'titleRedirect' => (object)[
-      'title' => 'Title for forwarding',
-      'type' => 'string',
-      'defaultvalue' => 'Forwarding'
-    ],
-    'contentRedirect' => (object)[
-      'title' => 'Confirmation message',
-      'type' => 'long-string',
-      'defaultvalue' => 'Would you like to redirect to the url "%URL"',
-      'placeholder' => 'Would you like to redirect to the url "%URL"',
-      'description' => 'URL path can be set with %URL.'
-    ],
-    'titleSelectDevice' => (object)[
-      'title' => 'Title for choose the device camera',
-      'type' => 'string',
-      'defaultvalue' => 'Select device'
-    ],
-    'titleWaitPermission' => (object)[
-      'title' => 'Title for wait permission',
-      'type' => 'string',
-      'defaultvalue' => 'Wait for your permission'
-    ],
-    'titlePermissonFailed' => (object)[
-      'title' => 'Title for permission failed',
-      'type' => 'string',
-      'defaultvalue' => 'Permission failed'
-    ],
-    'contentPermissonFailed' => (object)[
-      'title' => 'Content for permission failed',
-      'type' => 'long-string',
-      'defaultvalue' => 'Your browser has no permission for the camera. Please activate the permission.',
-      'placeholder' => 'Your browser has no permission for the camera. Please activate the permission.'
+    'settings' => (object)[
+        'force' => (object)[
+            'title' => 'Force redirect',
+            'type' => 'boolean',
+            'defaultvalue' => 0,
+            'description' => 'Force the redirect to the scanned url without confirm.'
+        ],
+        'disableButton' => (object)[
+            'title' => 'Diable button',
+            'type' => 'boolean',
+            'defaultvalue' => 0,
+            'description' => 'if you disable the button, you can open the dialog with the class name "qrscannerredirect-open".'
+        ],
+        'openNewTab' => (object)[
+            'title' => 'Open new tab',
+            'type' => 'boolean',
+            'defaultvalue' => 1,
+            'description' => 'Open new tab with the url.'
+        ],
+        'primaryColor' => (object)[
+            'title' => 'Primary color',
+            'type' => 'color',
+            'defaultvalue' => '#000000',
+            'placeholder' => 'Your browser has no permission for the camera. Please activate the permission.'
+        ],
+        'primaryContrastText' => (object)[
+            'title' => 'Primary contrast text color',
+            'type' => 'color',
+            'defaultvalue' => '#ffffff',
+            'placeholder' => 'Your browser has no permission for the camera. Please activate the permission.'
+        ],
+        'titleScanQRCode' => (object)[
+            'title' => 'Title for the QR-Code-Scanner',
+            'type' => 'string',
+            'defaultvalue' => 'QR-Code-Scanner'
+        ],
+        'titleRedirect' => (object)[
+            'title' => 'Title for forwarding',
+            'type' => 'string',
+            'defaultvalue' => 'Forwarding'
+        ],
+        'contentRedirect' => (object)[
+            'title' => 'Confirmation message',
+            'type' => 'long-string',
+            'defaultvalue' => 'Would you like to redirect to the url "%URL"',
+            'placeholder' => 'Would you like to redirect to the url "%URL"',
+            'description' => 'URL path can be set with %URL.'
+        ],
+        'titleSelectDevice' => (object)[
+            'title' => 'Title for choose the device camera',
+            'type' => 'string',
+            'defaultvalue' => 'Select device'
+        ],
+        'titleWaitPermission' => (object)[
+            'title' => 'Title for wait permission',
+            'type' => 'string',
+            'defaultvalue' => 'Wait for your permission'
+        ],
+        'titlePermissonFailed' => (object)[
+            'title' => 'Title for permission failed',
+            'type' => 'string',
+            'defaultvalue' => 'Permission failed'
+        ],
+        'contentPermissonFailed' => (object)[
+            'title' => 'Content for permission failed',
+            'type' => 'long-string',
+            'defaultvalue' => 'Your browser has no permission for the camera. Please activate the permission.',
+            'placeholder' => 'Your browser has no permission for the camera. Please activate the permission.'
+        ]
     ]
-  ]
 ]);
 $qsr_pluginsettings->createTable();
 
