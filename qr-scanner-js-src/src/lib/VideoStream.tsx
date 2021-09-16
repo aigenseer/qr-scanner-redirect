@@ -1,6 +1,7 @@
 
 
 import WindowUtils from "./WindowUtils";
+import SettingsStorage from "./SettingsStorage";
 
 export interface IVideoStreamSimpleDevice{
   id:    string;
@@ -46,18 +47,15 @@ export default class VideoStream {
     return new Promise(async (resolve: any, reject: any)=>{
       try {
         this.devices = (await this.getMediaDeviceInfo()).map((e: MediaDeviceInfo) => ({ label: e.label.replace(/ (\(.*?\))/g, ''), id: e.deviceId }));
-
+        let mediaTrackConstraints = this.DEFAULT_MEDIATRACK_CONSTRAINTS;
         if(WindowUtils.isMobile()){
-           this.DEFAULT_MEDIATRACK_CONSTRAINTS = { facingMode: { exact: "environment" } };
+          mediaTrackConstraints = { facingMode: { exact: "environment" } };
         }
-
-        /*
-        if(WindowUtils.isIOSMobile()){
-          this.DEFAULT_MEDIATRACK_CONSTRAINTS = { deviceId: { exact: this.devices[0].id } } as any;
-          alert(JSON.stringify(this.DEFAULT_MEDIATRACK_CONSTRAINTS))
+        let deviceId = SettingsStorage.get("deviceId");
+        if(deviceId !== null){
+          mediaTrackConstraints = this.getMediaTrackConstraintsById(deviceId);
         }
-        */
-        this.stream  = await this.getMediaStreamByConstraints(this.DEFAULT_MEDIATRACK_CONSTRAINTS);
+        this.stream  = await this.getMediaStreamByConstraints(mediaTrackConstraints);
         if(this.stream == null){
           throw new Error("Stream are null");
         }
@@ -113,11 +111,11 @@ export default class VideoStream {
    */
   private getMediaStreamByConstraints(mediaTrackConstraints: MediaTrackConstraints|boolean): Promise<MediaStream>{
     return new Promise(async (resolve: any, reject: any)=>{
-      if(this.stream!=null && this.currentMediaTrackConstraints === mediaTrackConstraints){
+      if(this.stream!==null && this.currentMediaTrackConstraints === mediaTrackConstraints){
         resolve(this.stream);
       }else{
         try {
-          if(this.stream!=null && this.currentMediaTrackConstraints !== mediaTrackConstraints){
+          if(this.stream!==null && this.currentMediaTrackConstraints !== mediaTrackConstraints){
             this.close();
           }
           this.stream                       = await navigator.mediaDevices.getUserMedia({video: mediaTrackConstraints});
@@ -140,17 +138,22 @@ export default class VideoStream {
     return this.stream as MediaStream;
   }
 
-  public getStreamByDeviceId(deviceID: string): Promise<MediaStream>
+  public getStreamByDeviceId(deviceId: string): Promise<MediaStream>
   {
-    return new Promise(async (resolve: any, reject: any)=>{
+    return new Promise(async (resolve: any, reject: any) => {
       try {
-        let mediaTrackConstraints = { deviceId: { exact: deviceID } };
-        this.stream               = await this.getMediaStreamByConstraints(mediaTrackConstraints);
+        SettingsStorage.set("deviceId", deviceId);
+        this.stream = await this.getMediaStreamByConstraints(this.getMediaTrackConstraintsById(deviceId));
         resolve(this.stream);
       } catch (err) {
         reject(err);
       }      
     });    
+  }
+
+  private getMediaTrackConstraintsById(deviceId: string): any
+  {
+    return { deviceId: { exact: deviceId } };
   }
 
 

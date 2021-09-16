@@ -1,22 +1,18 @@
 {
   "name": "qr-scanner-redirect",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.10.2",
-    "@material-ui/icons": "^4.9.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.47",
-    "@types/react": "^16.9.38",
-    "@types/react-dom": "^16.9.8",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@types/node": "^12.20.25",
+    "@types/react": "^16.14.15",
+    "@types/react-dom": "^16.9.14",
     "@zxing/library": "^0.17.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-scripts": "^3.4.1",
+    "typescript": "^3.9.10"
   },
   "scripts": {
     "start": "HOST=0.0.0.0 HTTPS=true react-scripts start",

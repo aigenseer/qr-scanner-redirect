@@ -1,5 +1,5 @@
 import React , { useState, ReactElement }               from 'react';
-import { MuiThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, makeStyles, createTheme } from '@material-ui/core/styles';
 import blueGrey                                         from '@material-ui/core/colors/blueGrey';
 import lightBlue                                        from '@material-ui/core/colors/lightBlue';
 
@@ -17,7 +17,7 @@ import Dialog                                           from '@material-ui/core/
 import MuiDialogTitle                                   from '@material-ui/core/DialogTitle';
 
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: blueGrey,
     secondary: lightBlue
@@ -47,12 +47,10 @@ export default function App() {
 
   window.qrscannerredirect.open = () => openDialogcamera();
 
-  /*
-  setTimeout(() => {
-     openDialogcamera()
-  }, 1000);
 
-   */
+  setTimeout(() => {
+      //openDialogcamera()
+  }, 1000);
 
 
   function openDialogcamera() {
@@ -80,8 +78,8 @@ export default function App() {
   function openPermissionMsg() {
     setMsg(<Dialog
       open={true}
-      disableBackdropClick={true}
       disableEscapeKeyDown={true}
+      onClose={e => false}
     ><MuiDialogTitle>{Properties.getTitleWaitPermission()}</MuiDialogTitle></Dialog>)
   }
 

@@ -66,7 +66,7 @@ export default function QrScanner(props:IQrScannerProps) {
                     console.log(err);
                 }
             }
-        }, UPDATE_INTERVAL)
+        }, UPDATE_INTERVAL);
     }
 
 
