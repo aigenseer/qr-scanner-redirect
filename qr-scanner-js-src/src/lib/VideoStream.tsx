@@ -1,5 +1,7 @@
-
-
+/**
+ * Coded By : aigenseer
+ * Copyright 2020, https://github.com/aigenseer
+ */
 import WindowUtils from "./WindowUtils";
 import SettingsStorage from "./SettingsStorage";
 

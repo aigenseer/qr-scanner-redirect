@@ -11,8 +11,10 @@ import Properties                     from "../lib/Properties";
 import QRScanner                      from './QrScanner';
 import DialogSelect                   from './DialogSelect';
 
-
-
+/**
+ * Coded By : aigenseer
+ * Copyright 2020, https://github.com/aigenseer
+ */
 const useStyles = makeStyles({
   root: {
     width: 500,

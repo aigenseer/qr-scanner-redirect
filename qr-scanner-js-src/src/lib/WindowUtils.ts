@@ -1,5 +1,8 @@
+/**
+ * Coded By : aigenseer
+ * Copyright 2020, https://github.com/aigenseer
+ */
 export default class WindowUtils {
-    
 
     /**
     * [if device mobile or desktop]

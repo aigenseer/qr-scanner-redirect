@@ -1,3 +1,7 @@
+/**
+ * Coded By : aigenseer
+ * Copyright 2020, https://github.com/aigenseer
+ */
 declare global {
     interface Window { qrscannerredirect: any; }
 }

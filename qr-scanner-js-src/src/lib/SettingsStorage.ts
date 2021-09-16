@@ -1,3 +1,7 @@
+/**
+ * Coded By : aigenseer
+ * Copyright 2020, https://github.com/aigenseer
+ */
 export default class SettingsStorage {
 
     private static getPrefixName(): string
