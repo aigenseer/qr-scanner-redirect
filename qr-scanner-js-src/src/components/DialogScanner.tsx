@@ -6,7 +6,7 @@ import React , { useState }           from 'react';
 
 import { makeStyles }                 from '@material-ui/core/styles';
 import Button                         from '@material-ui/core/Button';
-import { CameraFront }                from '@material-ui/icons';
+import { CameraFront, AttachFile }    from '@material-ui/icons';
 import Dialog                         from '@material-ui/core/Dialog';
 
 import { DialogTitle, DialogActions } from './DialogParts';
@@ -14,6 +14,12 @@ import VideoStream                    from '../lib/VideoStream';
 import Properties                     from "../lib/Properties";
 import QRScanner                      from './QrScanner';
 import DialogSelect                   from './DialogSelect';
+import WindowUtils from "../lib/WindowUtils";
+import IOSFileDialog from "./IOSFileDialog";
+import ScreenLoader from "./ScreenLoader";
+import DialogOk from "./DialogOk";
+import FileUtils from "../lib/FileUtils";
+import FileQRScannerUtils from "../lib/FileQRScannerUtils";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,8 +41,11 @@ const useStyles = makeStyles(theme => ({
     minHeight: "64px",
     zIndex: 1,
     background: theme.palette.primary.main,
-    justifyContent: "center !important",
     position: "fixed",
+    justifyContent: "space-around"
+  },
+  dialogActionsButton: {
+    width: "100%",
   }
 }));
 
@@ -46,13 +55,13 @@ export interface IDialogcameraProps {
 }
 
 var  selectedDeviceID = "";
-export default function DialogScanner(props: IDialogcameraProps) { 
+export default function DialogScanner(props: IDialogcameraProps) {
   const classes                        = useStyles();
   const DEVICE_SIZE                    = props.videoStream.getDevices().length;
-  // const SHOWDIALOGACTIONS              = DEVICE_SIZE > 0;
-  const SHOWDIALOGACTIONS              = true;
-  const [mediaStream,  setMediaStream] = useState<MediaStream>(props.videoStream.getCurrentStream());
+  const [mediaStream,  setMediaStream]          = useState<MediaStream>(props.videoStream.getCurrentStream());
   const [openDialogSelect, setOpenDialogSelect] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
+  const [openNoQR, setOpenNoQR] = useState(false);
 
 
   /**
@@ -98,15 +107,41 @@ export default function DialogScanner(props: IDialogcameraProps) {
     return props.videoStream.getDevices().map(e => Object.assign(e, {selected: selectedDeviceID === e.id }));
   }
 
-  function getActionFooter() {
-    if(!SHOWDIALOGACTIONS){
-      return null;
-    } 
+  function handleFileDialog(){
+    FileUtils.selectFile().then(file => onScanFile(file))
+  }
 
+  function onIOSSelectFile(file: File){
+    if(file !== null) onScanFile(file);
+  }
+
+  function onScanFile(file: File){
+    setLoading(true);
+    FileQRScannerUtils.scanFile(file).then(url => {
+      setLoading(false);
+      if(url !== null){
+        props.onClose(url);
+      }else{
+        setOpenNoQR(true);
+      }
+    }).catch(err => {
+      setLoading(false);
+    });
+  }
+
+  function getActionFooter() {
     return (<DialogActions className={classes.dialogActions} >
-              <Button onClick={handleChangeSelect} color="primary">
+              {
+                WindowUtils.isIOSMobile()?
+                    <IOSFileDialog onSelectFile={onIOSSelectFile} />:
+                    <Button onClick={handleFileDialog} color="primary" className={classes.dialogActionsButton}>
+                      <AttachFile fontSize="large" className={classes.dialogColor} />
+                    </Button>
+              }
+              <Button onClick={handleChangeSelect} color="primary" className={classes.dialogActionsButton} >
                 <CameraFront fontSize="large" className={classes.dialogColor} />
               </Button>
+              <div></div>
             </DialogActions>)
   }
 
@@ -117,6 +152,8 @@ export default function DialogScanner(props: IDialogcameraProps) {
           onClose={() => handleClose()}
         >
             <DialogTitle className={classes.dialogColor} onClose={() => handleClose()} >{Properties.getTitleScanQRCode()}</DialogTitle>
+            <ScreenLoader open={loading} />
+            <DialogOk open={openNoQR} title={"Failed"} text={Properties.getFailedReadQRImage()} onClose={() => setOpenNoQR(false)} />
             <div className={classes.content} >
               <QRScanner mediaStream={mediaStream} onFetchCode={handleClose} />
             </div>

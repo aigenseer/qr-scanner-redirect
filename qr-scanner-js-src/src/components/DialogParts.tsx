@@ -17,7 +17,7 @@ const DialogTitle = withStyles(theme => ({
     display: "flex",
     alignItems: "center",
     zIndex: 1,
-    width: "100%",
+
   },
   typography: {
     width: "100%"
@@ -25,7 +25,7 @@ const DialogTitle = withStyles(theme => ({
   closeButton: {
     // position: 'absolute',
     color: theme.palette.primary.contrastText,
-    marginRight: "2em"
+
   },
 }))((props: any) => {
   const { children, classes, onClose, className } = props;

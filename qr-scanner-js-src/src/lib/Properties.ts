@@ -16,12 +16,18 @@ export default class Properties {
             primaryColor: '#000',
             primaryContrastText: '#fff',
             titleSelectDevice: 'Select device',
-            titlePermissonFailed: 'Permission failed',
-            contentPermissonFailed: 'Your browser has no permission for the camera. Please activate the permission.',
+            titlePermissionFailed: 'Permission failed',
+            contentPermissionFailed: 'Your browser has no permission for the camera. Please activate the permission.',
             titleWaitPermission: 'Wait for your permission',
             titleScanQRCode: 'QR-Code-Scanner',
             titleRedirect: 'Forwarding',
-            contentRedirect: 'Would you like to redirect to the url "%URL"'
+            contentRedirect: 'Would you like to redirect to the url "%URL"',
+
+            failedReadQRImage: 'No QR-Code found on the picture.',
+            noPermissionDialogTitle: 'No camera permission',
+            noPermissionDialogText: 'Your browser has no access to your camera. You can still upload a photo to use the QR scanner.',
+            noPermissionDialogButton: 'Choose a photo',
+
         }
     }
 
@@ -37,14 +43,34 @@ export default class Properties {
         window.qrscannerredirect.app_name = appName;
     }
 
-    public static getTitlePermissonFailed(): string
+    public static getFailedReadQRImage(): string
     {
-        return window.qrscannerredirect.settings.titlePermissonFailed
+        return window.qrscannerredirect.settings.failedReadQRImage;
     }
 
-    public static getContentPermissonFailed(): string
+    public static getNoPermissionDialogTitle(): string
     {
-        return window.qrscannerredirect.settings.contentPermissonFailed
+        return window.qrscannerredirect.settings.noPermissionDialogTitle;
+    }
+
+    public static getNoPermissionDialogText(): string
+    {
+        return window.qrscannerredirect.settings.noPermissionDialogText;
+    }
+
+    public static getNoPermissionDialogButton(): string
+    {
+        return window.qrscannerredirect.settings.noPermissionDialogButton;
+    }
+
+    public static getTitlePermissionFailed(): string
+    {
+        return window.qrscannerredirect.settings.titlePermissionFailed
+    }
+
+    public static getContentPermissionFailed(): string
+    {
+        return window.qrscannerredirect.settings.contentPermissionFailed
     }
 
     public static isButtonDisabled(): boolean
@@ -96,12 +122,5 @@ export default class Properties {
     {
         return window.qrscannerredirect.settings.openNewTab;
     }
-
-
-    
-    
-    
-
-    
 
 }

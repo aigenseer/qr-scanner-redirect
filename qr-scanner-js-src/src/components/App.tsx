@@ -8,9 +8,10 @@ import Properties                                       from "../lib/Properties"
 import StringUtils                                      from "../lib/StringUtils";
 import logo                                             from '../assets/qrcode.svg';
 
-import Dialogcamera                                     from './DialogScanner';
-import Dialogconfirm                                    from './DialogConfirm';
-import DialogMsg                                        from './DialogMsg';
+import DialogCamera                                     from './DialogScanner';
+import DialogConfirm                                    from './DialogConfirm';
+import DialogOk                                          from './DialogOk';
+import DialogFileQRScanner                              from './DialogFileQRScanner';
 
 import Button                                           from '@material-ui/core/Button';
 import VideoStream                                      from '../lib/VideoStream';
@@ -45,35 +46,42 @@ export default function App() {
 
   let visibleButton : ReactElement|null = null;
   if(!Properties.isButtonDisabled()){
-    visibleButton = (<Button onClick={() => openDialogcamera()}><img src={logo} className={classes.img} alt="qrcode" /></Button>);
+    visibleButton = (<Button onClick={() => openDialogCamera()}><img src={logo} className={classes.img} alt="qrcode" /></Button>);
   }
 
-  window.qrscannerredirect.open = () => openDialogcamera();
+  window.qrscannerredirect.open = () => openDialogCamera();
 
 
   // setTimeout(() => {
-  //     openDialogcamera()
+  //     openDialogCamera()
   // }, 1000);
 
+  function fileReaderDialog()
+  {
+      setMsg(<DialogFileQRScanner onClose={url => {
+          setMsg(null);
+          onCloseDialog(url);
+      }} />)
+  }
 
-  function openDialogcamera() {
+  function openDialogCamera() {
     if(content === null){
       openPermissionMsg();
       VideoStream.getInstance().then(videoStream => {
         setMsg(null);
-        setContent(<Dialogcamera videoStream={videoStream} onClose={onCloseDialog} />)
+        setContent(<DialogCamera videoStream={videoStream} onClose={onCloseDialog} />)
       }).catch(err => {
           console.log(err)
         showPermissionMsg()
       });
-    }   
+    }
   }
 
   function showPermissionMsg() {
-    setMsg(<DialogMsg title={Properties.getTitlePermissonFailed()} text={Properties.getContentPermissonFailed()} onClose={() => setMsg(null)} />);        
+    setMsg(<DialogOk open={true} title={Properties.getTitlePermissionFailed()} text={Properties.getContentPermissionFailed()} onClose={fileReaderDialog}/>);
   }
 
-  function closeDialogcamera() {
+  function closeDialogCamera() {
     VideoStream.destory();
     setContent(null);
   }
@@ -123,17 +131,17 @@ export default function App() {
                   redirectToUrl(url);
                 }else{
                   const TEXT = Properties.getContentRedirect().replace('%URL', url);
-                  setMsg(<Dialogconfirm 
+                  setContent(null);
+                  setMsg(<DialogConfirm 
                     title={Properties.getTitleRedirect()} 
                     text={TEXT} 
                     onClose={((answer: boolean) => onCloseDialogConfirm(answer, url))} />)  
                 }                
             }
         }else{
-          closeDialogcamera();
+          closeDialogCamera();
         }
     }
-
 
   return (
     <MuiThemeProvider theme={theme}>

@@ -3,7 +3,8 @@
  * Copyright 2019, https://github.com/aigenseer
  */
 import React, { useEffect }    from 'react';
-import jsQR from "jsqr";
+import QRReader from '../lib/QRReader';
+
 import './css/qrscanner.css';
 
 interface IQrScannerProps{
@@ -56,10 +57,10 @@ export default function QrScanner(props:IQrScannerProps) {
             if(video != null && context!=null && typeof context.drawImage == 'function') {
                 try {
                     context.drawImage(video, 0, 0);
-                    let imageData = context.getImageData(0,0, context.canvas.width, context.canvas.height).data.buffer;
-                    const code = jsQR(new Uint8ClampedArray(imageData), context.canvas.width, context.canvas.height);
-                    if(code !== null){
-                        props.onFetchCode(code.data);
+                    let imageData = context.getImageData(0,0, context.canvas.width, context.canvas.height).data;
+                    let data = QRReader.readUint8ClampedArray(imageData, context.canvas.width, context.canvas.height);
+                    if(data !== null){
+                        props.onFetchCode(data);
                     }else{
                         fetchQrCode();
                     }

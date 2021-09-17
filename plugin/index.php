@@ -91,12 +91,12 @@ $qsr_pluginsettings = new QSR_PluginSettings(QSR_PREFIX, (object)[
             'type' => 'string',
             'defaultvalue' => 'Wait for your permission'
         ],
-        'titlePermissonFailed' => (object)[
+        'titlePermissionFailed' => (object)[
             'title' => 'Title for permission failed',
             'type' => 'string',
             'defaultvalue' => 'Permission failed'
         ],
-        'contentPermissonFailed' => (object)[
+        'contentPermissionFailed' => (object)[
             'title' => 'Content for permission failed',
             'type' => 'long-string',
             'defaultvalue' => 'Your browser has no permission for the camera. Please activate the permission.',

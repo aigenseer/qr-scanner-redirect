@@ -12,16 +12,16 @@ import DialogContentText                from '@material-ui/core/DialogContentTex
 import Button                           from '@material-ui/core/Button';
 
 
-export interface IDialogMsgProps {
+export interface IDialogConfirmProps {
     title: string;
     text: string;
     onClose(answer: boolean): void;
 }
 
-export default function DialogMsg(props: IDialogMsgProps) {
+export default function DialogConfirm(props: IDialogConfirmProps) {
     const [open, setOpen]   = useState<boolean>(true);
-    const [title, setTitle] = useState<IDialogMsgProps["title"]>(props.title);
-    const [text, setText]   = useState<IDialogMsgProps["text"]>(props.text);
+    const [title, setTitle] = useState<IDialogConfirmProps["title"]>(props.title);
+    const [text, setText]   = useState<IDialogConfirmProps["text"]>(props.text);
 
     useEffect(() => setTitle(props.title), [props.title]);
     useEffect(() => setText(props.text),   [props.text]);
