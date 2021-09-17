@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+            name="description"
+            content="wordpress plugin contains a web qr scanner with redirect function"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <link rel="manifest" href="manifest.json" />
+    <title>QR Scanner Redirect</title>
+
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <link href="https://getbootstrap.com/docs/5.0/examples/cheatsheet/cheatsheet.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+      <div class="container-fluid d-flex align-items-center">
+        <h1 class="d-flex align-items-center fs-4 text-white mb-0">
+          <img src="logo512.png" width="38"  class="me-3" style="background: rgb(255 255 255 / 100%)">
+          QR Scanner Redirect
+        </h1>
+        <span class="ms-auto link-light"  >
+          <a href="https://github.com/aigenseer/" style="color: white;" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+          </a>
+          <a href="https://github.com/aigenseer/qr-scanner-redirect/" class="badge badge-light"  >
+            Repository
+          </a>
+        </span>
+      </div>
+    </header>
+    <aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
+      <h2 class="h6 pt-4 pb-3 mb-4 border-bottom">On this demo</h2>
+      <nav class="small" id="toc">
+        <ul class="list-unstyled">
+          <li class="my-2">
+            <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#contents-collapse" aria-controls="contents-collapse">
+              QR Scanner Redirect
+            </button>
+            <ul class="list-unstyled ps-3 collapse" id="contents-collapse">
+              <li>
+                <a class="d-inline-flex align-items-center rounded" href="#qrscannerredirectdemo">Demo</a>
+              </li>
+              <li>
+                <a class="d-inline-flex align-items-center rounded" href="#qrscannerredirectuseit">Use it</a>
+              </li>
+            </ul>
+          </li>
+          <li class="my-2">
+            <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#contents-collapse" aria-controls="contents-collapse">
+              QR Generator
+            </button>
+            <ul class="list-unstyled ps-3 collapse" id="contents-collapse">
+              <li>
+                <a class="d-inline-flex align-items-center rounded" href="#qrgeneratordemo">Demo</a>
+              </li>
+              <li>
+                <a class="d-inline-flex align-items-center rounded" href="#qrgeneratoruseit">Use it</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <div class="bd-cheatsheet container-fluid bg-body">
+      <section id="content">
+        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">QR Scanner Redirect</h2>
+
+        <article class="my-3" id="qrscannerredirectdemo">
+          <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+            <h3>Demo</h3>
+          </div>
+
+          <div>
+            <div id="qrscannerredirect"></div>
+          </div>
+
+        </article>
+
+        <article class="my-3" id="qrscannerredirectuseit">
+          <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+            <h3>Use it</h3>
+          </div>
+
+          <div>
+            Place the shortcode <code>[qr-scanner-redirect]</code> in your templates.
+            <br/>
+            You can also start the scanner with the function <code>window.qrscannerredirect.open()</code>  or add the class <code>qr-scanner-redirect-open</code> to any element and click on it.
+            <br/>
+            <h6>Example</h6>
+            <h6>Function</h6>
+            <pre><code>&lt;button onclick="window.qrscannerredirect.open()"&gt;window.qrscannerredirect.open()&lt;/button&gt;</code></pre>
+            <button type="button" class="btn btn-dark" onclick="window.qrscannerredirect.open()">window.qrscannerredirect.open()</button>
+
+            <h6>Class</h6>
+            <pre><code>&lt;button onclick="window.qrscannerredirect.open()"&gt;window.qrscannerredirect.open()&lt;/button&gt;</code></pre>
+            <button type="button" class="btn btn-dark qr-scanner-redirect-open">.qr-scanner-redirect-open</button>
+          </div>
+
+        </article>
+      </section>
+
+      <section id="qrgeneratordemo">
+        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">QR Generator</h2>
+
+        <article class="my-3" id="qrgeneratorexample">
+          <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+            <h3>Demo</h3>
+          </div>
+
+          <div>
+            <div class="qrgenerator" data-url="http://localhost/wordpress" data-size="150" ></div>
+          </div>
+        </article>
+
+        <article class="my-3" id="qrgeneratoruseit">
+          <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+            <h3>Use it</h3>
+          </div>
+
+          <div>
+            Place the shortcode <code>[qr-generator id="1" size="300"]</code> in your templates.
+            <p>
+              <b>Require parameter:</b>
+              <br/>
+              id: Id of the page
+              <br/>
+              <b>Optional parameter:</b>
+              <br/>
+              size: Pixel size of the QR code
+            </p>
+          </div>
+        </article>
+
+      </section>
+
+    </div>
+
+    <script src="qr-scanner-redirect.js"></script>
+    <script src="qr-generator.js"></script>
+    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://getbootstrap.com/docs/5.0/examples/cheatsheet/cheatsheet.js"></script>
+  </body>
+</html>

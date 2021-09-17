@@ -22,7 +22,6 @@ export default class Properties {
             titleScanQRCode: 'QR-Code-Scanner',
             titleRedirect: 'Forwarding',
             contentRedirect: 'Would you like to redirect to the url "%URL"',
-
             failedReadQRImage: 'No QR-Code found on the picture.',
             noPermissionDialogTitle: 'No camera permission',
             noPermissionDialogText: 'Your browser has no access to your camera. You can still upload a photo to use the QR scanner.',

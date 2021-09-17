@@ -3,7 +3,7 @@
  * Plugin Name:       QR Scanner Redirect
  * Plugin URI:        https://github.com/aigenseer/qr-scanner-redirect
  * Description:       Wordpress web qr-scanner with redirect function
- * Version:           1.0.6
+ * Version:           1.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Viktor Aigenseer
@@ -24,10 +24,14 @@ define('QSR_WIDGET_DESCRIPTION', 'Qr-scanner with redirect funktion');
 include "class/tabs.class.php";
 
 $qsr_tabs = new QSR_Tabs(QSR_PREFIX, QSR_NAME, [
-  'settings' => (object)[
-    'title' => 'Settings',
-    'include' => QSR_PLUGIN_FILE_URL.'/settings.php'
-  ]
+    'settings' => (object)[
+        'title' => 'Settings',
+        'include' => QSR_PLUGIN_FILE_URL.'/settings.php'
+    ],
+    'language' => (object)[
+        'title' => 'Language',
+        'include' => QSR_PLUGIN_FILE_URL.'/language.php'
+    ]
 ]);
 
 
@@ -44,7 +48,7 @@ $qsr_pluginsettings = new QSR_PluginSettings(QSR_PREFIX, (object)[
             'title' => 'Diable button',
             'type' => 'boolean',
             'defaultvalue' => 0,
-            'description' => 'if you disable the button, you can open the dialog with the class name "qrscannerredirect-open".'
+            'description' => 'if you disable the button, you can also start the scanner with the function `window.qrscannerredirect.open()` or add the class `qr-scanner-redirect-open` to any element and click on it.'
         ],
         'openNewTab' => (object)[
             'title' => 'Open new tab',
@@ -63,7 +67,9 @@ $qsr_pluginsettings = new QSR_PluginSettings(QSR_PREFIX, (object)[
             'type' => 'color',
             'defaultvalue' => '#ffffff',
             'placeholder' => 'Your browser has no permission for the camera. Please activate the permission.'
-        ],
+        ]
+    ],
+    'language' => (object)[
         'titleScanQRCode' => (object)[
             'title' => 'Title for the QR-Code-Scanner',
             'type' => 'string',
@@ -101,7 +107,27 @@ $qsr_pluginsettings = new QSR_PluginSettings(QSR_PREFIX, (object)[
             'type' => 'long-string',
             'defaultvalue' => 'Your browser has no permission for the camera. Please activate the permission.',
             'placeholder' => 'Your browser has no permission for the camera. Please activate the permission.'
-        ]
+        ],
+        'failedReadQRImage' => (object)[
+            'title' => 'Failed to read QR image',
+            'type' => 'string',
+            'defaultvalue' => 'No QR-Code found on the picture.'
+        ],
+        'noPermissionDialogTitle' => (object)[
+            'title' => 'No permission dialog title',
+            'type' => 'string',
+            'defaultvalue' => 'No camera permission'
+        ],
+        'noPermissionDialogText' => (object)[
+            'title' => 'No permission dialog text',
+            'type' => 'string',
+            'defaultvalue' => 'Your browser has no access to your camera. You can still upload a photo to use the QR scanner.'
+        ],
+        'noPermissionDialogButton' => (object)[
+            'title' => 'No permission dialog button',
+            'type' => 'string',
+            'defaultvalue' => 'Choose a photo'
+        ],
     ]
 ]);
 $qsr_pluginsettings->createTable();

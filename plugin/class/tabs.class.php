@@ -29,7 +29,7 @@ class QSR_Tabs
    */
   private function getActiveTab()
   {
-    $active_tab = isset($_GET['id'])? $_GET[ 'tab' ]: "";
+    $active_tab = isset($_GET['tab'])? $_GET[ 'tab' ]: "";
     $found = '';
     foreach ($this->tabs as $id => $tab) {
       if($active_tab == $id){
@@ -63,7 +63,6 @@ class QSR_Tabs
   {
     $active_tab = $this->getActiveTab();
     $tabs = $this->getHTMLTabs($active_tab);
-
     print <<<HTML
         <div class="wrap">
             <h2>$this->title</h2>

@@ -118,7 +118,7 @@ class QSR_PluginSettings {
      * @param  boolean $allowUnkown [if the parameter is false, then only the values are exited which also exist in the default settíngs data]
      * @return stdobject
      */
-    private function mergWithDefaultValues(array $values, $group=null, $allowUnkown=true)
+    private function mergeWithDefaultValues(array $values, $group=null, $allowUnkown=true)
     {
       $_values = $this->getDefaultData($group);
       foreach (get_object_vars($_values) as $key => $value) {
@@ -133,7 +133,7 @@ class QSR_PluginSettings {
           }else if($allowUnkown){
             $_values->{$key}->value = $v;
           }else{
-            // print sprintf('not set key %s value %s<br>', $key, $v);
+            //print sprintf('not set key %s value %s<br>', $key, $v);
           }
         }
       }
@@ -160,7 +160,7 @@ class QSR_PluginSettings {
       foreach ($dbResult as $v) {
         $values[$v->name] = $v->data;
       }
-      $data = $this->mergWithDefaultValues($values, $group);
+      $data = $this->mergeWithDefaultValues($values, $group, false);
       if($filter){
         foreach ($data as $key => $v) {
           switch ($v->type) {
@@ -222,7 +222,7 @@ class QSR_PluginSettings {
     public function fetchPost(string $group)
     {
       $post = $this->getValidatePost($group);
-      $_values = $this->mergWithDefaultValues($post, $group, false);
+      $_values = $this->mergeWithDefaultValues($post, $group, false);
       foreach ($_values as $key => $value) {
         if(!$value->change && $this->is($key)){
           switch ($value->type) {

@@ -10,24 +10,48 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-Wordpress web qr-scanner with redirect function.
+This wordpress plugin contains a web qr scanner with redirect function. It is also possible to integrate a user-defined QR code for a website using a shortcode.
+
+= Using the QR Scanner Redirect =
+Place the shortcode `[qr-scanner-redirect]` in your templates.
+
+Alternative start the plugin
+You can also start the scanner with the function `window.qrscannerredirect.open()` or add the class `qr-scanner-redirect-open` to any element and click on it.
+
+= Using the QR Generator =
+Place the shortcode `[qr-generator id="1" size="300"]` in your templates
+Require parameter:
+* id: Id of the page
+Optional parameter:
+* size: Pixel size of the QR code
+
+= Supported Platforms =
+* PC: Safari, Opera, Edge, Chrome, Firefox
+* Android/IOS: Safari, Opera, Edge, Chrome, Firefox
 
 = Write Me =
 
 Do you have a problem or a new wishes?
 Write me on [github](https://github.com/aigenseer/qr-scanner-redirect) or create new topic on wordpress.
 
+
 == Installation ==
 
-Simple Using
+= Installation steps =
 1. Upload the folder `qr-scanner-redirect/plugin` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Place `the shortcode `[qr-scanner-redirect]` in your templates
 
-Alternative Using
-You can also start the scanner with the function `window.qrscannerredirect.open()`
 
 == Changelog ==
 
-= 1.2 =
+= 1.1.0 =
+* Add Image Scan
+* QR-Generator shortcode
+* Add custom color settings
+* Fix ios scan bug
+* Fix bug to save settings
+* Update js dependencies
+* Save selected input camera
+
+= 1.0.2 =
 * First Version

@@ -12,6 +12,18 @@ const APP_NAME = 'qrscannerredirect';
 const rootElement = document.getElementById(APP_NAME)
 Properties.init(APP_NAME);
 
+
+const startElements = document.getElementsByClassName("qr-scanner-redirect-open");
+
+[...startElements as any].forEach((e: Element) => {
+    if(e!=null){
+        e.addEventListener("click", function (){
+            window?.qrscannerredirect?.open();
+        });
+    }
+});
+
+
 ReactDOM.render(
     <App />, rootElement
 );

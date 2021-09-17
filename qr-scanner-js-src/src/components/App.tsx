@@ -52,6 +52,8 @@ export default function App() {
   window.qrscannerredirect.open = () => openDialogCamera();
 
 
+
+
   // setTimeout(() => {
   //     openDialogCamera()
   // }, 1000);

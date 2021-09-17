@@ -19,6 +19,7 @@ HTML;
 }
 $qsr_printDescription = 'qsr_printDescription';
 
+
 foreach ($formvalues as $name => $entry){
   $title = esc_html($entry->title);
   print <<<HTML
@@ -80,12 +81,12 @@ print <<<HTML
 HTML;
     break;
     default:
-    print <<<HTML
-      <td>
-        <span>$name</span>
-        {$qsr_printDescription($entry)}
-      </td>
-HTML;
+//    print <<<HTML
+//      <td>
+//        <span>$name</span>
+//        {$qsr_printDescription($entry)}
+//      </td>
+//HTML;
       break;
   }//switch
 
