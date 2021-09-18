@@ -8,8 +8,6 @@ import WorkerUtils from "./WorkerUtils";
  */
 export default class FileQRScannerUtils {
 
-    private static worker = new Worker('qr-scanner-worker.js');
-
     private static MAX_SCANS: number = 15;
 
     public static scanFile(file: File): Promise<string|null>

@@ -1,6 +1,6 @@
 {
   "name": "qr-scanner-redirect",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
