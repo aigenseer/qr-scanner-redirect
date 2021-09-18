@@ -50,9 +50,7 @@ export default function App() {
   }
 
   window.qrscannerredirect.open = () => openDialogCamera();
-
-
-
+  window.qrscannerredirect.openFileReader = () => fileReaderDialog();
 
   // setTimeout(() => {
   //     openDialogCamera()

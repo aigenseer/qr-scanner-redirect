@@ -10,7 +10,12 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-This wordpress plugin contains a web qr scanner with redirect function. It is also possible to integrate a user-defined QR code for a website using a shortcode.
+This WordPress plugin contains a web Qr scanner with a redirect function. It is also possible to embed a custom QR code for a website via a shortcode.
+With the user-friendly administrator interface, it is possible to make extensive settings such as the texts, forwarding functions and the color of this plugin.
+In addition to the usual QR code scanners, the plug-in offers support for HTTP connections with the alternative of the file QR scanner.
+
+= Demo & Documentation =
+[Demo](https://aigenseer.github.io/qr-scanner-redirect/)
 
 = Using the QR Scanner Redirect =
 Place the shortcode `[qr-scanner-redirect]` in your templates.
