@@ -49,7 +49,7 @@ Write me on [github](https://github.com/aigenseer/qr-scanner-redirect) or create
 
 == Changelog ==
 
-= 1.1.0 =
+= 1.1.2 =
 * Add Image Scan
 * QR-Generator shortcode
 * Add custom color settings
