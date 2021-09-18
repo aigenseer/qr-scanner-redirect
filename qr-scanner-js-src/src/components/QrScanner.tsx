@@ -3,9 +3,9 @@
  * Copyright 2019, https://github.com/aigenseer
  */
 import React, { useEffect }    from 'react';
-import QRReader from '../lib/QRReader';
 
 import './css/qrscanner.css';
+import WorkerUtils from "../lib/WorkerUtils";
 
 interface IQrScannerProps{
     mediaStream: MediaStream;
@@ -14,6 +14,7 @@ interface IQrScannerProps{
 
 
 const UPDATE_INTERVAL = 500;
+
 
 export default function QrScanner(props:IQrScannerProps) {
     let video:           HTMLVideoElement|null = null;
@@ -52,18 +53,20 @@ export default function QrScanner(props:IQrScannerProps) {
      *  on found a qr code then return the result to the parent component ]
      */
     function fetchQrCode(){
+        let worker = WorkerUtils.getQRScannerWorker();
         setTimeout(async () => {
-
             if(video != null && context!=null && typeof context.drawImage == 'function') {
                 try {
                     context.drawImage(video, 0, 0);
-                    let imageData = context.getImageData(0,0, context.canvas.width, context.canvas.height).data;
-                    let data = QRReader.readUint8ClampedArray(imageData, context.canvas.width, context.canvas.height);
-                    if(data !== null){
-                        props.onFetchCode(data);
-                    }else{
-                        fetchQrCode();
-                    }
+                    let imageData = context.getImageData(0,0, context.canvas.width, context.canvas.height);
+                    worker.addEventListener('message', function(e) {
+                        if(e.data !== null){
+                            props.onFetchCode(e.data);
+                        }else{
+                            fetchQrCode();
+                        }
+                    }, false);
+                    worker.postMessage([imageData]);
                 } catch (err) {
                     console.log(err);
                 }

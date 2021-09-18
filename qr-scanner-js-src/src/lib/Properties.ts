@@ -26,7 +26,7 @@ export default class Properties {
             noPermissionDialogTitle: 'No camera permission',
             noPermissionDialogText: 'Your browser has no access to your camera. You can still upload a photo to use the QR scanner.',
             noPermissionDialogButton: 'Choose a photo',
-
+            assetURLPath: "",
         }
     }
 
@@ -120,6 +120,10 @@ export default class Properties {
     public static isOpenNewTab(): Boolean
     {
         return window.qrscannerredirect.settings.openNewTab;
+    }
+    public static getAssetURLPath(): string
+    {
+        return window.qrscannerredirect.settings.assetURLPath;
     }
 
 }

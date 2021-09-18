@@ -10,11 +10,13 @@
  */
 function qsr_init_cc() {
   wp_enqueue_script('qr-scanner-redirect-script',  plugins_url( '/assets/qr-scanner-redirect.js', __FILE__ ));
+  wp_enqueue_script('qr-generator-script',  plugins_url( '/assets/qr-scanner-worker.js', __FILE__ ));
   global $qsr_pluginsettings;
   $id = QSR_PREFIX;
   $s = $qsr_pluginsettings->getAll('settings', true);
   $l = $qsr_pluginsettings->getAll('language', true);
-  $settings = json_encode((array_merge((array) $l, (array) $s)));
+  $e = ["assetURLPath" => plugins_url( '/assets/', __FILE__ )];
+  $settings = json_encode((array_merge((array) $l, (array) $s, $e)));
   return <<<HTML
     <div id="{$id}" />
     <script type="application/javascript" >

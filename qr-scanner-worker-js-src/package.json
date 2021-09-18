@@ -1,0 +1,22 @@
+{
+  "name": "qr-scanner-worker",
+  "version": "1.0.0",
+  "scripts": {
+    "build-scanner": "rm -vf build/* && npm run wp && cp -vf dist/index.js ../qr-scanner-js-src/public/qr-scanner-worker.js",
+    "build": "rm -vf build/* && npm run wp && cp -vf dist/index.js ../plugin/assets/qr-scanner-worker.js",
+    "watch": "nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"npm run build-scanner\" ",
+    "wp": "webpack"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.3",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0",
+    "worker-loader": "^3.0.8"
+  },
+  "dependencies": {
+    "jsqr": "^1.4.0",
+    "npm-watch": "^0.11.0"
+  }
+}
