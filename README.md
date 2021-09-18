@@ -9,7 +9,7 @@ In addition to the usual QR code scanners, the plug-in offers support for HTTP c
 ### Using the QR Scanner Redirect
 Place the shortcode `[qr-scanner-redirect]` in your templates.
 
-####Alternative start the plugin
+#### Alternative start the plugin
 You can also start the scanner with the function `window.qrscannerredirect.open()` or add the class `qr-scanner-redirect-open` to any element and click on it.
 
 ### Using the QR Generator 
