@@ -42,7 +42,7 @@ Write me on [github](https://github.com/aigenseer/qr-scanner-redirect) or create
 
 == Installation ==
 
-= Installation steps =
+= Steps =
 1. Upload the folder `qr-scanner-redirect/plugin` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
