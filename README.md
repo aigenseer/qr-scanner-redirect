@@ -16,7 +16,8 @@ You can also start the scanner with the function `window.qrscannerredirect.open(
 Place the shortcode `[qr-generator id="1" size="300"]` in your templates
 Require parameter:
 * id: Id of the page
-  Optional parameter:
+
+Optional parameter:
 * size: Pixel size of the QR code
 
 ### Supported Platforms

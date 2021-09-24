@@ -8,6 +8,7 @@ import DialogTitle                      from '@material-ui/core/DialogTitle';
 import List                             from '@material-ui/core/List';
 import ListItem                         from '@material-ui/core/ListItem';
 import ListItemText                     from '@material-ui/core/ListItemText';
+import clsx from "clsx";
 
 export interface IDialogSelectProps {
     open: boolean
@@ -42,19 +43,20 @@ export default function DialogSelect(props: IDialogSelectProps) {
 
     return (
         <Dialog
+          className={clsx("qsr-dialog-root", "qsr-dialog-select-root")}
           open={open}
           onClose={handleClose}
         >
-          <DialogTitle>{props.title}</DialogTitle>
+          <DialogTitle className={clsx("qsr-dialog-title", "qsr-dialog-select-title")} >{props.title}</DialogTitle>
           <div>
             <List>
               {options.map((option: any, i: number) => (
-                <ListItem button selected={option.selected} onClick={() => {
+                <ListItem className={clsx("qsr-dialog-list-item", "qsr-dialog-select-list-item")} button selected={option.selected} onClick={() => {
                   if(!option.selected){
                     handleListItemClick(option)
                   }
                 }} key={i}>
-                  <ListItemText primary={option.label} />
+                  <ListItemText className={clsx("qsr-dialog-list-item-text", "qsr-dialog-select-list-item-text")} primary={option.label} />
                 </ListItem>
               ))}
             </List>

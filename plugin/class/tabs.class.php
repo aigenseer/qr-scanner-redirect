@@ -72,9 +72,19 @@ class QSR_Tabs
             </h2>
         </div>
 HTML;
-    include $this->tabs[$active_tab]->include;
-
+    include QSR_PLUGIN_FILE_URL."/include/settings.php";
   }
+
+  public function addScripts()
+  {
+    add_action('admin_enqueue_scripts', function(){
+      wp_enqueue_script( 'pluginsettingsform-script', plugins_url( '../assets/pluginsettingsform/pluginsettingsform.js', __FILE__ ), [], false, true);
+    });
+    add_action('admin_init', function (){
+      wp_enqueue_style( 'pluginsettingsform-style', plugins_url( '../assets/pluginsettingsform/pluginsettingsform.css', __FILE__ ));
+    });
+  }
+
 }
 
 ?>

@@ -10,6 +10,7 @@ import DialogContent                    from '@material-ui/core/DialogContent';
 import DialogActions                    from '@material-ui/core/DialogActions';
 import DialogContentText                from '@material-ui/core/DialogContentText';
 import Button                           from '@material-ui/core/Button';
+import clsx                             from "clsx";
 
 
 export interface IDialogOkProps {
@@ -40,16 +41,17 @@ export default function DialogOk(props: IDialogOkProps) {
 
     return (
         <Dialog
+          className={clsx("qsr-dialog-root", "qsr-dialog-ok-root")}
           open={open}
           onClose={()=> handleClose()}
           maxWidth={'md'}
         >
-          <DialogTitle>{title}</DialogTitle>
-          <DialogContent>
-            <DialogContentText>{text}</DialogContentText>
+          <DialogTitle className={clsx("qsr-dialog-title", "qsr-dialog-ok-title")} >{title}</DialogTitle>
+          <DialogContent className={clsx("qsr-dialog-content", "qsr-dialog-ok-content")}  >
+            <DialogContentText className={clsx("qsr-dialog-content-text", "qsr-dialog-ok-content-text")} >{text}</DialogContentText>
           </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>
+          <DialogActions className={clsx("qsr-dialog-actions", "qsr-dialog-ok-actions")} >
+            <Button className={clsx("qsr-dialog-button", "qsr-dialog-ok-button")} onClick={handleClose}>
               <Check fontSize="large" />
             </Button>
           </DialogActions>

@@ -1,0 +1,20 @@
+.form-table td div
+{
+    display: flex;
+    align-items: start
+}
+
+.form-table td .reset
+{
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity .2s ease-out;
+    -moz-transition: opacity .2s ease-out;
+    -webkit-transition: opacity .2s ease-out;
+    -o-transition: opacity .2s ease-out;
+}
+
+.form-table td:hover .reset
+{
+    opacity: 1;
+}

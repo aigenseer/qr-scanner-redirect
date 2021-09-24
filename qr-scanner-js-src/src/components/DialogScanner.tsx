@@ -20,6 +20,7 @@ import ScreenLoader from "./ScreenLoader";
 import DialogOk from "./DialogOk";
 import FileUtils from "../lib/FileUtils";
 import FileQRScannerUtils from "../lib/FileQRScannerUtils";
+import clsx from "clsx";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -130,31 +131,31 @@ export default function DialogScanner(props: IDialogcameraProps) {
   }
 
   function getActionFooter() {
-    return (<DialogActions className={classes.dialogActions} >
+    return (<DialogActions className={clsx("qsr-dialog-root", "qsr-dialog-scanner-actions", classes.dialogActions)}>
               {
                 WindowUtils.isIOSMobile()?
                     <IOSFileDialog onSelectFile={onIOSSelectFile} />:
-                    <Button onClick={handleFileDialog} color="primary" className={classes.dialogActionsButton}>
+                    <Button onClick={handleFileDialog} color="primary" className={clsx("qsr-dialog-button", "qsr-dialog-scanner-button", "qsr-dialog-scanner-button-file", classes.dialogActionsButton)} >
                       <AttachFile fontSize="large" className={classes.dialogColor} />
                     </Button>
               }
-              <Button onClick={handleChangeSelect} color="primary" className={classes.dialogActionsButton} >
+              <Button onClick={handleChangeSelect} color="primary" className={clsx("qsr-dialog-button", "qsr-dialog-scanner-button", "qsr-dialog-scanner-button-camera", classes.dialogActionsButton)}>
                 <CameraFront fontSize="large" className={classes.dialogColor} />
               </Button>
-              <div></div>
             </DialogActions>)
   }
 
   return (
     <Dialog
+          className={clsx("qsr-dialog-root", "qsr-dialog-scanner-root")}
           fullScreen={true}
           open={true}
           onClose={() => handleClose()}
         >
-            <DialogTitle className={classes.dialogColor} onClose={() => handleClose()} >{Properties.getTitleScanQRCode()}</DialogTitle>
+            <DialogTitle className={clsx("qsr-dialog-title", "qsr-dialog-scanner-title", classes.dialogColor)} onClose={() => handleClose()} >{Properties.getTitleScanQRCode()}</DialogTitle>
             <ScreenLoader open={loading} />
             <DialogOk open={openNoQR} title={"Failed"} text={Properties.getFailedReadQRImage()} onClose={() => setOpenNoQR(false)} />
-            <div className={classes.content} >
+            <div className={clsx("qsr-dialog-content", "qsr-dialog-scanner-content", classes.content)}>
               <QRScanner mediaStream={mediaStream} onFetchCode={handleClose} />
             </div>
             <DialogSelect open={openDialogSelect} title={Properties.getTitleSelectDevice()} options={getDialogSelectOptions()} onSelect={e => onSelectDevice(e)} />

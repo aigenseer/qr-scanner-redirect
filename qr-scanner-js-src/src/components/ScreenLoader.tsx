@@ -6,6 +6,7 @@ import React, {useEffect, useState} from 'react';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from "@material-ui/core/styles";
+import clsx from "clsx";
 
 const useStyles = makeStyles(theme => ({
     backdrop: {
@@ -26,10 +27,10 @@ export default function ScreenLoader(props: IFileQrScannerProps) {
 
     return (
         <Backdrop
+            className={clsx("qsr-backdrop", classes.backdrop)}
             open={open}
-            className={classes.backdrop}
         >
-            <CircularProgress color="inherit" />
+            <CircularProgress className={clsx("qsr-backdrop-circular-progress")} color="inherit" />
         </Backdrop>
     );
 }

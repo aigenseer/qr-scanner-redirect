@@ -10,6 +10,7 @@ import DialogContent                    from '@material-ui/core/DialogContent';
 import DialogActions                    from '@material-ui/core/DialogActions';
 import DialogContentText                from '@material-ui/core/DialogContentText';
 import Button                           from '@material-ui/core/Button';
+import clsx                             from "clsx";
 
 
 export interface IDialogConfirmProps {
@@ -39,19 +40,20 @@ export default function DialogConfirm(props: IDialogConfirmProps) {
 
     return (
         <Dialog
+          className={clsx("qsr-dialog-root", "qsr-dialog-confirm-root")}
           open={open}
           onClose={()=> handleClose()}
           maxWidth={'md'}
         >
-          <DialogTitle>{title}</DialogTitle>
-          <DialogContent>
-            <DialogContentText>{text}</DialogContentText>
+          <DialogTitle className={clsx("qsr-dialog-title", "qsr-dialog-confirm-title")} >{title}</DialogTitle>
+          <DialogContent className={clsx("qsr-dialog-content", "qsr-dialog-confirm-content")}>
+            <DialogContentText className={clsx("qsr-dialog-content-text", "qsr-dialog-confirm-content-text")} >{text}</DialogContentText>
           </DialogContent>
-          <DialogActions>
-          <Button onClick={()=> handleClose()}>
+          <DialogActions className={clsx("qsr-dialog-actions", "qsr-dialog-confirm-actions")}>
+            <Button className={clsx("qsr-dialog-button", "qsr-dialog-confirm-button-clear")} onClick={()=> handleClose()}>
               <Clear fontSize="large" />
             </Button>
-            <Button onClick={()=> handleClose(true)}>
+            <Button className={clsx("qsr-dialog-button", "qsr-dialog-confirm-button-check")} onClick={()=> handleClose(true)}>
               <Check fontSize="large" />
             </Button>
           </DialogActions>

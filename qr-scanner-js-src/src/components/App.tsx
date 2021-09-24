@@ -17,6 +17,7 @@ import Button                                           from '@material-ui/core/
 import VideoStream                                      from '../lib/VideoStream';
 import Dialog                                           from '@material-ui/core/Dialog';
 import MuiDialogTitle                                   from '@material-ui/core/DialogTitle';
+import clsx                                             from 'clsx';
 
 
 const useStyles = makeStyles({
@@ -46,7 +47,7 @@ export default function App() {
 
   let visibleButton : ReactElement|null = null;
   if(!Properties.isButtonDisabled()){
-    visibleButton = (<Button onClick={() => openDialogCamera()}><img src={logo} className={classes.img} alt="qrcode" /></Button>);
+    visibleButton = (<Button className={clsx("qsr-open-button")} onClick={() => openDialogCamera()}><img src={logo} className={classes.img} alt="qrcode" /></Button>);
   }
 
   window.qrscannerredirect.open = () => openDialogCamera();
@@ -89,10 +90,13 @@ export default function App() {
 
   function openPermissionMsg() {
     setMsg(<Dialog
-      open={true}
-      disableEscapeKeyDown={true}
-      onClose={e => false}
-    ><MuiDialogTitle>{Properties.getTitleWaitPermission()}</MuiDialogTitle></Dialog>)
+        className={clsx("qsr-dialog-root", "qsr-dialog-permission-msg-root")}
+        open={true}
+        disableEscapeKeyDown={true}
+        onClose={e => false}
+    >
+        <MuiDialogTitle className={clsx("qsr-dialog-title", "qsr-dialog-permission-msg-title")}  >{Properties.getTitleWaitPermission()}</MuiDialogTitle>
+    </Dialog>)
   }
 
    /**
@@ -145,10 +149,10 @@ export default function App() {
     }
 
   return (
-    <MuiThemeProvider theme={theme}>
-      {msg}
-      {visibleButton}
-      {content}
-    </MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
+          {msg}
+          {visibleButton}
+          {content}
+      </MuiThemeProvider>
   );
 }

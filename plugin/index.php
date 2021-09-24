@@ -3,7 +3,7 @@
  * Plugin Name:       QR Scanner Redirect
  * Plugin URI:        https://github.com/aigenseer/qr-scanner-redirect
  * Description:       Wordpress web qr-scanner with redirect function
- * Version:           1.1.5
+ * Version:           1.1.6
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Viktor Aigenseer
@@ -25,14 +25,17 @@ include "class/tabs.class.php";
 
 $qsr_tabs = new QSR_Tabs(QSR_PREFIX, QSR_NAME, [
     'settings' => (object)[
-        'title' => 'Settings',
-        'include' => QSR_PLUGIN_FILE_URL.'/settings.php'
+        'title' => 'Settings'
     ],
     'language' => (object)[
-        'title' => 'Language',
-        'include' => QSR_PLUGIN_FILE_URL.'/language.php'
+        'title' => 'Language'
+    ],
+    'advanced' => (object)[
+        'title' => 'Advanced'
     ]
 ]);
+$qsr_tabs->addScripts();
+
 
 
 include "sql/pluginsettings.class.php";
@@ -128,6 +131,14 @@ $qsr_pluginsettings = new QSR_PluginSettings(QSR_PREFIX, (object)[
             'type' => 'string',
             'defaultvalue' => 'Choose a photo'
         ],
+    ],
+    'advanced' => (object)[
+        'qsrstyle' => (object)[
+            'title' => 'QR Scanner Redirect Style',
+            'style' => 'width: 80%; min-height: 500px;',
+            'type' => 'long-string',
+            'defaultvalue' => file_get_contents(plugin_dir_path( __FILE__ ) . '/default/qsrstyle.default.css')
+        ],
     ]
 ]);
 $qsr_pluginsettings->createTable();
@@ -139,9 +150,9 @@ add_action("admin_menu", "qsr_init_menu");
 
 function qsr_display(){
   global $qsr_tabs;
-	$qsr_tabs->display();
+  $qsr_tabs->display();
 }
 
-include "shortcode.php";
-include "widget.php";
-include "metaboxes.php";
+include "include/shortcode.php";
+include "include/widget.php";
+include "include/metaboxes.php";

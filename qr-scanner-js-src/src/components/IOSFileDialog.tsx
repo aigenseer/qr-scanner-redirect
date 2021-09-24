@@ -3,6 +3,7 @@
  * Copyright 2021, https://github.com/aigenseer
  */
 import React from 'react';
+import clsx from "clsx";
 
 
 export interface IFileDialogProps {
@@ -40,8 +41,8 @@ export default function IOSFileDialog(props: IFileDialogProps) {
     }
 
     return (
-        <div>
-            <input type='file' accept=".png, .jpg, .jpeg" onChange={handleFileInputClicked} onClick={handleClickedFileInput}  capture="camera"/>
+        <div className={clsx("qsr-ios-file-root")} >
+            <input className={clsx("qsr-ios-file-input")} type='file' accept=".png, .jpg, .jpeg" onChange={handleFileInputClicked} onClick={handleClickedFileInput}  capture="camera"/>
         </div>
     );
 }

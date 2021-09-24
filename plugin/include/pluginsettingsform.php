@@ -17,10 +17,13 @@ function qsr_printDescription($entry)
 HTML;
   }
 }
+
+
 $qsr_printDescription = 'qsr_printDescription';
 
 
 foreach ($formvalues as $name => $entry){
+  $defaultValue = esc_html($entry->defaultvalue);
   $title = esc_html($entry->title);
   print <<<HTML
     <tr>
@@ -28,20 +31,21 @@ foreach ($formvalues as $name => $entry){
 HTML;
   $name = esc_html($name);
   $value = esc_html($entry->value);
+  $style = property_exists($entry, "style")? esc_html($entry->style): "";
   $placeholder = property_exists($entry, "placeholder")? esc_html($entry->placeholder): "";
   switch ($entry->type) {
     case 'string':
       print <<<HTML
         <td>
-          <input type='text' name='$name' value='$value' placeholder='$placeholder' />
-          {$qsr_printDescription($entry)}
+          <div><input type='text' name='$name' value='$value' data-default='$defaultValue' placeholder='$placeholder' /><span class="reset" ><span class="dashicons dashicons-update"></span></span></div>          
+          {$qsr_printDescription($entry)}          
         </td>
 HTML;
       break;
       case 'long-string':
         print <<<HTML
           <td>
-            <textarea name="$name" class="regular-text" placeholder='$placeholder' rows="3">$value</textarea>
+            <div><textarea name="$name" class="regular-text" placeholder='$placeholder' data-default='$defaultValue' rows="3" style="$style" >$value</textarea><span class="reset" ><span class="dashicons dashicons-update"></span></span></div>    
             {$qsr_printDescription($entry)}
           </td>
 HTML;
@@ -51,7 +55,7 @@ HTML;
         $maxvalue = esc_html($entry->maxvalue);
         print <<<HTML
           <td>
-            <input name='$name' type="number" value='$value' min='$minvalue' max='$maxvalue' />
+            <div><input name='$name' type="number" value='$value' data-default='$defaultValue' min='$minvalue' max='$maxvalue' /><span class="reset" ><span class="dashicons dashicons-update"></span></span></div>  
             {$qsr_printDescription($entry)}
           </td>
 HTML;
@@ -63,10 +67,10 @@ HTML;
       $entry->value? $selectedEnabled = "selected": $selectedDisabled = "selected";
       print <<<HTML
         <td>
-          <select name='$name' >
+          <div><select name='$name' data-default='$defaultValue' >
             <option value="1" {$selectedEnabled} >Enabled</option>
             <option value="0" {$selectedDisabled}>Disabled</option>
-          </select>
+          </select><span class="reset" ><span class="dashicons dashicons-update"></span></span></div>  
           {$qsr_printDescription($entry)}
         </td>
 HTML;
@@ -75,7 +79,7 @@ HTML;
     case 'color':
 print <<<HTML
         <td>
-          <input type='color' name='$name' value='$value' />
+          <div><input type='color' name='$name' data-default='$defaultValue' value='$value' /><span class="reset" ><span class="dashicons dashicons-update"></span></span></div> 
           {$qsr_printDescription($entry)}
         </td>
 HTML;

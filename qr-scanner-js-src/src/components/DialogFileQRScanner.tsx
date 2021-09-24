@@ -20,6 +20,7 @@ import FileUtils from "../lib/FileUtils";
 import FileQRScannerUtils from "../lib/FileQRScannerUtils";
 import ScreenLoader from "./ScreenLoader";
 import DialogOk from "./DialogOk";
+import clsx from "clsx";
 
 
 
@@ -104,19 +105,22 @@ export default function DialogFileQRScanner(props: IDialogFileQRScannerProps) {
 
     return (
         <Dialog
+            className={clsx("qsr-dialog-root", "qsr-dialog-fqs-root")}
             open={true}
         >
-            <DialogTitle onClose={handleClose}>{Properties.getNoPermissionDialogTitle()}</DialogTitle>
-            <DialogContent dividers>
-                <Typography gutterBottom>{Properties.getNoPermissionDialogText()}</Typography>
+            <DialogTitle className={clsx("qsr-dialog-title", "qsr-dialog-fqs-title")} onClose={handleClose}>
+                {Properties.getNoPermissionDialogTitle()}
+            </DialogTitle>
+            <DialogContent className={clsx("qsr-dialog-content", "qsr-dialog-fqs-content")}  dividers>
+                <Typography className={clsx("qsr-dialog-content-text", "qsr-dialog-fqs-content-text")} gutterBottom>{Properties.getNoPermissionDialogText()}</Typography>
             </DialogContent>
             <ScreenLoader open={loading} />
             <DialogOk open={openNoQR} title={"Failed"} text={Properties.getFailedReadQRImage()} onClose={() => setOpenNoQR(false)} />
-            <DialogActions className={classes.dialogActions} >
+            <DialogActions className={clsx("qsr-dialog-actions", "qsr-dialog-fqs-actions", classes.dialogActions)} >
                 {
                     WindowUtils.isIOSMobile()?
                         <IOSFileDialog onSelectFile={onIOSSelectFile} />:
-                        <Button onClick={handleFileDialog} color="primary">
+                        <Button className={clsx("qsr-dialog-button", "qsr-dialog-fqs-button")} onClick={handleFileDialog} color="primary">
                             <AttachFile fontSize="large" />
                             {Properties.getNoPermissionDialogButton()}
                         </Button>

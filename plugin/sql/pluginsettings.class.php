@@ -95,7 +95,7 @@ class QSR_PluginSettings {
      * @param string|null $group [name of settings group]
      * @return stdObject
      */
-    private function getDefaultData($group)
+    public function getDefaultData($group)
     {
       $_values = clone $this->DEFAULT_VALUES;
       if($group!==null && property_exists($this->DEFAULT_VALUES, $group)){

@@ -6,6 +6,7 @@ import React, { useEffect }    from 'react';
 
 import './css/qrscanner.css';
 import WorkerUtils from "../lib/WorkerUtils";
+import clsx from "clsx";
 
 interface IQrScannerProps{
     mediaStream: MediaStream;
@@ -74,12 +75,12 @@ export default function QrScanner(props:IQrScannerProps) {
         }, UPDATE_INTERVAL);
     }
 
-    return (<div className="qrscanner">
-        <div className="ocrloader">
+    return (<div className={clsx("qsr-scanner", "qrscanner")} >
+        <div className={clsx("qsr-ocr-loader", "ocrloader")}>
             <em/>
             <span/>
         </div>
-        <video  ref={e => video = e} autoPlay={true} loop muted playsInline={true}  />
+        <video className={clsx("qsr-video")} ref={e => video = e} autoPlay={true} loop muted playsInline={true}  />
         <canvas style={{'display': 'none'}}  ref={e => canvas = e as HTMLCanvasElement} width={640} height={480} />
     </div>)
 
