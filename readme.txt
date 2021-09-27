@@ -49,6 +49,9 @@ Write me on [github](https://github.com/aigenseer/qr-scanner-redirect) or create
 
 == Changelog ==
 
+= 1.1.8 =
+* Add qr generator style
+
 = 1.1.7 =
 * Add custom style
 * fix add qr-generator

@@ -1,47 +1,57 @@
-import React , { useState, useEffect }  from 'react';
-import QRCode                           from "qrcode";
+import React, { useEffect, useRef, useState } from "react";
+import QRCodeStyling                          from "qr-code-styling";
+
 
 
 export interface IAppProps{
-    url: string|null;
-    size: string|null;
+  url: string|null;
+  size: string|null;
+  jsonOptions: string|null;
 }
 
 export default function App(props: IAppProps)
 {
-    const [base64, setBase64]   = useState<string|null>(null);
-    useEffect(() => updateProps(props));
-    const [size, setSize]   = useState<number|null>(formatPropToNumber(props.size));
+  const [url] = useState<string|null>(props.url);
+  const [size]   = useState<number|null>(formatPropToNumber(props.size));
+  const [parameter]   = useState<object>(getParameterByJSON(props.jsonOptions));
+  const ref = useRef<HTMLDivElement>(null);
+  const qrCode = new QRCodeStyling({
+    width: 300,
+    height: 300
+  });
 
-    function updateProps(props: IAppProps)
-    {
-        updateBase64(props.url);
-        setSize(formatPropToNumber(props.size));
+  function formatPropToNumber(value: string|null): number|null
+  {
+    if(value !== null){
+      return parseInt(value);
     }
+    return null;
+  }
 
-    function updateBase64(url: IAppProps["url"])
-    {
-        if(url === null) return;
-        QRCode.toDataURL(url).then(url => setBase64(url)).catch(e => setBase64(null));
+  function getParameterByJSON(json: string|null): object
+  {
+    try {
+      if(json === null) return {};
+      return JSON.parse(json);
+    }catch (e){
+      return {};
     }
+  }
 
-    function formatPropToNumber(value: string|null): number|null
-    {
-        if(value !== null){
-            return parseInt(value);
-        }
-        return null;
+  useEffect(() => {
+    if(ref.current) qrCode.append(ref.current);
+    if(size !== null && url !== null){
+      qrCode.update(Object.assign({
+        data: url,
+        width: size,
+        height: size
+      }, parameter));
     }
+  });
 
-    if(base64 === null || props.url === null){
-        return null;
-    }
-
-    if(size !== null){
-        return <img src={base64} alt={props.url} width={size} />
-    }
-
-    return (
-        <img src={base64} alt={props.url}  />
-    );
+  return (
+      <div ref={ref} />
+  );
 }
+
+

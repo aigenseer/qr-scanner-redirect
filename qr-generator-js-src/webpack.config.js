@@ -1,6 +1,6 @@
 const path = require("path");
+const webpack = require("webpack");
 const FILENAME = require("./package.json").name;
-console.log(FILENAME)
 const DIST_FOLDER = path.resolve(__dirname, '..', 'plugin', 'assets');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -36,11 +36,6 @@ module.exports = {
             },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-            //css
-            {
-               test: /\.css$/,
-               use: ['style-loader', 'css-loader'],
-             },
             //image
             {
               test: /\.(pdf|jpg|png|gif|svg|ico)$/,
@@ -54,10 +49,13 @@ module.exports = {
     },
 
     plugins: [
-      new ForkTsCheckerWebpackPlugin({
-        memoryLimit: 2048,
-        workers: 1
-      })
+        new ForkTsCheckerWebpackPlugin({
+            memoryLimit: 2048,
+            workers: 1
+        }),
+        new webpack.optimize.LimitChunkCountPlugin({
+            maxChunks: 1
+        })
     ],
 
     // When importing a module whose path matches one of the following, just

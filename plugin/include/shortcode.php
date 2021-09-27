@@ -17,6 +17,17 @@ function qsrGetInlineStyle() {
 HTML;
 }
 
+
+function qsrQGJson() {
+  global $qsr_pluginsettings;
+  $defaultAdvanced = $qsr_pluginsettings->getDefaultData('advanced');
+  $advanced = $qsr_pluginsettings->getAll('advanced', true);
+  if(strcmp($defaultAdvanced->qgjson->defaultvalue, $advanced->qgjson) === 0){
+    return "{}";
+  }
+  return $advanced->qgjson;
+}
+
 /**
  * [initialize the scanner shortcode]
  * @return String
@@ -49,16 +60,20 @@ add_shortcode(QSR_SHORTCODE_NAME_SCANNER, 'qsr_init_cc');
  * @return String
  */
 function qg_init_cc($atts) {
+  global $qsr_pluginsettings;
+  $advanced = $qsr_pluginsettings->getAll('advanced', true);
+
   wp_enqueue_script('qr-generator-script',  plugins_url( '../assets/qr-generator.js', __FILE__ ));
-  $a = shortcode_atts(['id' => null, 'size' => null ], $atts );
+  $a = shortcode_atts(['id' => null, 'size' => null, 'json-options' => '{}' ], $atts );
   if(is_null($a['id'])){
     return '<div class="notice notice-warning"><h3>No id in shortcode '.QSR_SHORTCODE_NAME_GENERATOR.' found.</h3></div>';;
   }
   $url = get_page_link($a['id']);
   $size = $a['size'];
+  $jsonOptions = esc_html(json_encode((array_merge((array) json_decode($advanced->qgjson), (array) json_decode($a['json-options'])))));
 
   return <<<HTML
-    <div class="qrgenerator" data-url="{$url}" data-size="{$size}" />
+    <div class="qrgenerator" data-url="{$url}" data-size="{$size}" data-json-options="{$jsonOptions}" />
 HTML;
 }
 add_shortcode(QSR_SHORTCODE_NAME_GENERATOR, 'qg_init_cc');

@@ -10,7 +10,7 @@
  */
 function qsr_printDescription($entry)
 {
-  $description = property_exists($entry, "description")? esc_html($entry->description): "";
+  $description = property_exists($entry, "description")? $entry->description: "";
   if(property_exists($entry, 'description')){
     return <<<HTML
     <p class="description">$description</p>

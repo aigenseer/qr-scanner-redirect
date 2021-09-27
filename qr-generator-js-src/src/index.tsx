@@ -1,24 +1,28 @@
-/**
- * Coded By : aigenseer
- * Copyright 2019, https://github.com/aigenseer
- */
-/// <reference path='../custom.d.ts'/>
-import * as React    from "react";
-import * as ReactDOM from "react-dom";
-import App           from './components/App';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
+import reportWebVitals from './reportWebVitals';
+
 
 
 setTimeout(()=>{
-  const APP_NAME    = 'qrgenerator';
-  const rootElements = document.getElementsByClassName(APP_NAME);
+    const APP_NAME    = 'qrgenerator';
+    const rootElements = document.getElementsByClassName(APP_NAME);
 
-  [...rootElements as any].forEach((rootElement: Element) => {
-    if(rootElement!=null){
-      ReactDOM.render(
-          <App url={rootElement.getAttribute('data-url')} size={rootElement.getAttribute('data-size')} />, rootElement
-      );
-    }
-  });
+    [...rootElements as any].forEach((rootElement: Element) => {
+        if(rootElement!=null){
+            ReactDOM.render(
+                <React.StrictMode>
+                    <App url={rootElement.getAttribute('data-url')} size={rootElement.getAttribute('data-size')} jsonOptions={rootElement.getAttribute('data-json-options')} />
+                </React.StrictMode>, rootElement
+            );
+        }
+    });
 
 
 }, 1000)
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
