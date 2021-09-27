@@ -31,7 +31,7 @@ export default class Properties {
     }
 
     public static init(appName: string){
-        //set the settings paramter
+        //set the settings parameter
         if(window.hasOwnProperty(appName)){
             window.qrscannerredirect.settings = Object.assign(Properties.getDefaultSettings(), window.qrscannerredirect.settings);
         }else{

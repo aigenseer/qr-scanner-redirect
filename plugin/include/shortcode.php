@@ -27,7 +27,7 @@ function qsr_init_cc() {
   $id = QSR_PREFIX;
   $s = $qsr_pluginsettings->getAll('settings', true);
   $l = $qsr_pluginsettings->getAll('language', true);
-  $e = ["assetURLPath" => plugins_url( '/assets/', __FILE__ )];
+  $e = ["assetURLPath" => plugins_url( '../assets/', __FILE__ )];
   $settings = json_encode((array_merge((array) $l, (array) $s, $e)));
   add_action( 'wp_head', 'qsr_inline_style' );
   $styleTag = qsrGetInlineStyle();

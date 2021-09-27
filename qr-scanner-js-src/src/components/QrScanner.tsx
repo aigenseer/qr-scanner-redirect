@@ -21,7 +21,8 @@ export default function QrScanner(props:IQrScannerProps) {
     let video:           HTMLVideoElement|null = null;
     let canvas:          HTMLCanvasElement;
     let context:         CanvasRenderingContext2D|null;
-
+    const worker = WorkerUtils.getQRScannerWorker();
+    worker.addEventListener('message', onFetchCodeEvent, false);
 
     useEffect(() => {
         startDevice(props.mediaStream);
@@ -49,30 +50,32 @@ export default function QrScanner(props:IQrScannerProps) {
         }
     }
 
+
+
     /**
      * [start a interval and try to catch the qr code from the canvas context.
      *  on found a qr code then return the result to the parent component ]
      */
     function fetchQrCode(){
-        let worker = WorkerUtils.getQRScannerWorker();
         setTimeout(async () => {
             if(video != null && context!=null && typeof context.drawImage == 'function') {
                 try {
                     context.drawImage(video, 0, 0);
                     let imageData = context.getImageData(0,0, context.canvas.width, context.canvas.height);
-                    worker.addEventListener('message', function(e) {
-                        if(e.data !== null){
-                            props.onFetchCode(e.data);
-                        }else{
-                            fetchQrCode();
-                        }
-                    }, false);
                     worker.postMessage([imageData]);
                 } catch (err) {
                     console.log(err);
                 }
             }
         }, UPDATE_INTERVAL);
+    }
+
+    function onFetchCodeEvent(e: MessageEvent){
+        if(e.data !== null){
+            props.onFetchCode(e.data);
+        }else{
+            fetchQrCode();
+        }
     }
 
     return (<div className={clsx("qsr-scanner", "qrscanner")} >
