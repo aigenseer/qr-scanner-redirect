@@ -3,24 +3,18 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
+const APP_NAME    = 'qrgenerator';
+const rootElements = document.getElementsByClassName(APP_NAME);
 
-
-setTimeout(()=>{
-    const APP_NAME    = 'qrgenerator';
-    const rootElements = document.getElementsByClassName(APP_NAME);
-
-    [...rootElements as any].forEach((rootElement: Element) => {
-        if(rootElement!=null){
-            ReactDOM.render(
-                <React.StrictMode>
-                    <App url={rootElement.getAttribute('data-url')} size={rootElement.getAttribute('data-size')} jsonOptions={rootElement.getAttribute('data-json-options')} />
-                </React.StrictMode>, rootElement
-            );
-        }
-    });
-
-
-}, 1000)
+[...rootElements as any].forEach((rootElement: Element) => {
+    if(rootElement!=null){
+        ReactDOM.render(
+            <React.StrictMode>
+                <App url={rootElement.getAttribute('data-url')} size={rootElement.getAttribute('data-size')} jsonOptions={rootElement.getAttribute('data-json-options')} />
+            </React.StrictMode>, rootElement
+        );
+    }
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
