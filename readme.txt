@@ -49,7 +49,7 @@ Write me on [github](https://github.com/aigenseer/qr-scanner-redirect) or create
 
 == Changelog ==
 
-= 1.1.8 =
+= 1.2.0 =
 * Add qr generator style
 
 = 1.1.7 =

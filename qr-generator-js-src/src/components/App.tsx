@@ -41,11 +41,11 @@ export default function App(props: IAppProps)
   useEffect(() => {
     if(ref.current) qrCode.append(ref.current);
     if(size !== null && url !== null){
-      qrCode.update(Object.assign({
+      qrCode.update(Object.assign(parameter, {
         data: url,
         width: size,
         height: size
-      }, parameter));
+      }));
     }
   });
 
