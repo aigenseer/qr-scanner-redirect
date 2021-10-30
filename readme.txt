@@ -49,6 +49,9 @@ Write me on [github](https://github.com/aigenseer/qr-scanner-redirect) or create
 
 == Changelog ==
 
+= 1.2.2 =
+* Fix display metabox
+
 = 1.2.1 =
 * Fix undefined constant error
 

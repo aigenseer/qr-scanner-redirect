@@ -3,7 +3,7 @@
  * Plugin Name:       QR Scanner Redirect
  * Plugin URI:        https://github.com/aigenseer/qr-scanner-redirect
  * Description:       Wordpress web qr-scanner with redirect function
- * Version:           1.2.1
+ * Version:           1.2.2
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Viktor Aigenseer
@@ -19,6 +19,7 @@ define('QSR_NAME', 'QR-Scanner-Redirect');
 define('QSR_PREFIX', 'qrscannerredirect');
 define('QSR_SHORTCODE_NAME_SCANNER', 'qr-scanner-redirect');
 define('QSR_SHORTCODE_NAME_GENERATOR', 'qr-generator');
+define('QSR_SHORTCODE_NAME_METABOX', 'qr-generator-metabox');
 define('QSR_WIDGET_DESCRIPTION', 'Qr-scanner with redirect funktion');
 
 include "class/tabs.class.php";

@@ -10,9 +10,8 @@
  */
 function qsr_qr_code_generator($post)
 {
-  ?>
-    <div class="qrgenerator" data-url="<?php print get_permalink($post->ID); ?>" />
-  <?php
+
+    echo do_shortcode('[qr-generator id="'.$post->ID.'" size="200"  ]');
 }
 
 /**
@@ -23,7 +22,7 @@ function qsr_add_meta_boxes()
     $screens = ['post', 'wporg_cpt', 'page'];
     foreach ($screens as $screen) {
         add_meta_box(
-            QSR_SHORTCODE_NAME_GENERATOR,
+            QSR_SHORTCODE_NAME_METABOX,
             'Redirect QR-Code',
             'qsr_qr_code_generator',
             $screen,
