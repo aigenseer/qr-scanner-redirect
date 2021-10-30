@@ -23,7 +23,7 @@ function qsr_add_meta_boxes()
     $screens = ['post', 'wporg_cpt', 'page'];
     foreach ($screens as $screen) {
         add_meta_box(
-            QSR_SHORTCODE_NAME,
+            QSR_SHORTCODE_NAME_GENERATOR,
             'Redirect QR-Code',
             'qsr_qr_code_generator',
             $screen,
