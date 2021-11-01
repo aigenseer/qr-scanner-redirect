@@ -21,6 +21,7 @@ define('QSR_SHORTCODE_NAME_SCANNER', 'qr-scanner-redirect');
 define('QSR_SHORTCODE_NAME_GENERATOR', 'qr-generator');
 define('QSR_SHORTCODE_NAME_METABOX', 'qr-generator-metabox');
 define('QSR_WIDGET_DESCRIPTION', 'Qr-scanner with redirect funktion');
+define('QSR_SHORTCODE_GENERATE_ALL', 'QR-list');
 
 include "class/tabs.class.php";
 
