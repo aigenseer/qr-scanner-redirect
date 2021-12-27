@@ -14,7 +14,8 @@
     "typescript": "^3.9.10"
   },
   "scripts": {
-    "start": "HOST=0.0.0.0 HTTPS=true react-scripts start",
+    "start": "react-scripts start",
+    "start_": "HOST=0.0.0.0 HTTPS=true react-scripts start",
     "build": "webpack"
   },
   "eslintConfig": {
