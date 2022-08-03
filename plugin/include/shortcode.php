@@ -88,6 +88,59 @@ add_action('admin_enqueue_scripts', function(){
 });
 
 
+/**
+ * [initialize the generator all by category shortcode]
+ * @return String
+ * Usage [QR-list category="QR" size="300"]
+ * uses category slug to list post title, excerpt, qrcode
+ */
+function qg_all_init_cc($atts) {
+  global $qsr_pluginsettings;
+  $advanced = $qsr_pluginsettings->getAll('advanced', true);
 
+  wp_enqueue_script('qr-generator-script',  plugins_url( '../assets/qr-generator.js', __FILE__ ));
+  $a = shortcode_atts(['category' => null, 'size' => null, 'json-options' => '{}' ], $atts );
+  if(is_null($a['category'])){
+    return '<div class="notice notice-warning"><h3>No category in shortcode '.QSR_SHORTCODE_GENERATE_ALL.' found.</h3></div>';;
+  }
+
+  /** Get all posts with specified category
+   */
+   //get qrcode settings
+     $buffer = "<table>";
+     $size = $a['size'];
+     $jsonOptions = esc_html(json_encode((array_merge((array) json_decode($advanced->qgjson), (array) json_decode($a['json-options'])))));
+     //create query
+    $q = new WP_Query(array(
+        'post_type' => 'post',
+        'posts_per_page' => 10,
+        'category_name' => $a['category']
+    ));
+    
+    //start loop if q returns post
+    while ($q->have_posts()) {
+        $q->the_post();
+     
+        $id = get_the_ID();
+        $url = get_page_link($id);
+        
+         $QRcode=<<<HTML
+ <div class="qrgenerator" data-url="{$url}" data-size="{$size}" data-json-options="{$jsonOptions}" />
+HTML;
+        
+        //add content to buffer
+        $buffer = $buffer."<tr><td>". get_the_title(). "</td><td>".get_the_excerpt()."</td><td>". $url."</td><td>". $QRcode."</td></tr>";
+    }
+    $buffer = $buffer."</table>";
+    wp_reset_postdata();
+    return $buffer;
+}
+   
+
+add_shortcode(QSR_SHORTCODE_GENERATE_ALL, 'qg_all_init_cc');
+
+add_action('admin_enqueue_scripts', function(){
+  wp_enqueue_script('qr-generator-script',  plugins_url( '../assets/qr-generator.js', __FILE__ ));
+});
 
 ?>
